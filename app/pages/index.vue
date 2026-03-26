@@ -1,6 +1,14 @@
 <script setup>
 import mainData from '~/data/main.json'
-import mockData from '~/data/mock-products.json'
+
+const {
+  response,
+  pending,
+  heroBanners,
+  bestProducts,
+  recommendProducts,
+  categories
+} = useMain()
 
 // SEO
 useHead({ title: mainData.seo.title })
@@ -11,29 +19,21 @@ useSeoMeta({
   ogImage: mainData.seo.ogImage
 })
 
-// 목데이터 기반 (portfolio 방식)
-const allProducts = mockData.products
-
-// New Arrival: id 1~5 (isNew 상품)
-const newArrivalProducts = allProducts.filter(p => p.isNew)
-
-// Best Item: id 6~10 (isBest 상품)
-const bestProducts = allProducts.filter(p => p.isBest)
-
-// Special Offer: 할인율 있는 상품 (discountRate > 0)
-const specialOfferProducts = allProducts
-  .filter(p => p.discountRate > 0)
-  .map(p => ({
-    ...p,
-    originalPrice: p.price,
-    price: Math.round(p.price * (1 - p.discountRate / 100))
+// /main 응답의 배너 (heroBanners는 /main/banners 별도 호출인데 비어있을 수 있음)
+// /main 응답에 포함된 banners를 우선 사용
+const heroSlides = computed(() => {
+  if (heroBanners.value.length > 0) return heroBanners.value
+  const mainBanners = response.value?.data?.banners?.HERO || []
+  return mainBanners.map(b => ({
+    id: b.id,
+    title: b.title || '',
+    subtitle: b.subtitle || '',
+    description: b.description || '',
+    image: b.imageUrl,
+    imageAlt: b.title || '',
+    href: b.linkUrl
   }))
-
-// Hero 배너 (목데이터)
-const heroSlides = mockData.banners
-
-// Event 배너 (목데이터)
-const eventBanner = mockData.eventBanner
+})
 
 // Scroll reveal animation
 let observer
@@ -60,7 +60,7 @@ onUnmounted(() => {
 
 <template>
   <div class="page-main">
-    <!-- Hero 배너 (목데이터) -->
+    <!-- Hero 배너 -->
     <div class="page-main__hero-wrap">
       <SectionHero
         :data="mainData.hero"
@@ -69,37 +69,23 @@ onUnmounted(() => {
     </div>
 
     <main>
-      <!-- New Arrival 섹션 -->
+      <!-- 추천 상품 섹션 -->
       <SectionBestItems
+        v-if="recommendProducts.length > 0"
         class="reveal"
         :data="mainData.newArrival"
-        :products="newArrivalProducts"
+        :products="recommendProducts"
+        :loading="pending"
       />
 
-      <!-- Best Item 섹션 -->
+      <!-- 베스트 상품 섹션 -->
       <SectionBestItems
+        v-if="bestProducts.length > 0"
         class="reveal"
         :data="mainData.bestItems"
         :products="bestProducts"
+        :loading="pending"
       />
-
-      <!-- Special Offer 섹션 -->
-      <SectionBestItems
-        class="reveal"
-        :data="mainData.specialOffer"
-        :products="specialOfferProducts"
-      />
-
-      <!-- Event 배너 (목데이터) -->
-      <section class="event-banner reveal">
-        <NuxtLink :to="eventBanner.href" class="event-banner__frame">
-          <img
-            :src="eventBanner.image"
-            :alt="eventBanner.imageAlt"
-            class="event-banner__image"
-          />
-        </NuxtLink>
-      </section>
     </main>
   </div>
 </template>
