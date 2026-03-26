@@ -100,14 +100,6 @@ const guestPassword = reactive({
   passwordConfirm: ''
 })
 
-const payment = reactive({
-  method: 'card',
-  cardCompany: '',
-  installment: '0',
-  bank: '',
-  depositor: ''
-})
-
 const depositor = reactive({
   name: ''
 })
@@ -202,6 +194,12 @@ const handleCouponSelect = ({ coupon, discountAmount }) => {
 
 // 결제하기
 const handleSubmit = async () => {
+  // 주문 상품 확인
+  if (orderItems.value.length === 0) {
+    warning('주문할 상품이 없습니다.')
+    return
+  }
+
   if (!isAgreementValid.value) {
     warning(orderData.sections.agreements.requiredAlert || '필수 약관에 동의해주세요.')
     return
@@ -245,11 +243,11 @@ const handleSubmit = async () => {
 
   // 주문 생성 요청 데이터
   const orderPayload = {
-    items: orderItems.value.map(item => ({
-      productId: item.productId,
-      variantId: item.variantId || null,
-      quantity: item.quantity
-    })),
+    items: orderItems.value.map(item => {
+      const orderItem = { productId: item.productId, quantity: item.quantity }
+      if (item.variantId) orderItem.variantId = item.variantId
+      return orderItem
+    }),
     shippingAddress: {
       recipientName: shipping.recipient,
       recipientPhone: shipping.phone,
@@ -277,38 +275,36 @@ const handleSubmit = async () => {
 
   const result = await createOrder(orderPayload)
 
-  if (result.success) {
-    // 장바구니에서 주문한 경우 해당 아이템 제거
-    const cartItemIds = orderItems.value.map(item => item.cartItemId).filter(Boolean)
-    for (const cartItemId of cartItemIds) {
-      await removeFromCart(cartItemId)
-    }
-
-    // 주문 아이템 정리
-    clearOrderItems()
-
-    // 주문 완료 정보를 sessionStorage에 저장
-    const orderCompleteData = {
-      orderId: result.data?.orderId || result.orderId,
-      orderNumber: result.data?.orderNumber || result.orderNumber,
-      grandTotal: result.data?.grandTotal || summary.value.total,
-      shippingAddress: result.data?.shippingAddress || null,
-      bankTransferInfo: result.data?.bankTransferInfo || null,
-      depositDeadline: result.data?.depositDeadline || null
-    }
-    sessionStorage.setItem('orderCompleteData', JSON.stringify(orderCompleteData))
-
-    // 주문 완료 페이지로 이동
-    router.push({
-      path: '/order-complete',
-      query: {
-        orderNumber: result.data?.orderNumber || result.orderNumber,
-        amount: result.data?.grandTotal || summary.value.total
-      }
-    })
-  } else {
+  if (!result.success) {
     warning(result.error)
+    return
   }
+
+  // 장바구니에서 주문한 경우 해당 아이템 제거
+  const cartItemIds = orderItems.value.map(item => item.cartItemId).filter(Boolean)
+  for (const cartItemId of cartItemIds) {
+    await removeFromCart(cartItemId)
+  }
+
+  clearOrderItems()
+
+  const orderCompleteData = {
+    orderId: result.data?.orderId || result.orderId,
+    orderNumber: result.data?.orderNumber || result.orderNumber,
+    grandTotal: result.data?.grandTotal || summary.value.total,
+    shippingAddress: result.data?.shippingAddress || null,
+    bankTransferInfo: result.data?.bankTransferInfo || null,
+    depositDeadline: result.data?.depositDeadline || null
+  }
+  sessionStorage.setItem('orderCompleteData', JSON.stringify(orderCompleteData))
+
+  router.push({
+    path: '/order-complete',
+    query: {
+      orderNumber: result.data?.orderNumber || result.orderNumber,
+      amount: result.data?.grandTotal || summary.value.total
+    }
+  })
 }
 </script>
 
@@ -365,7 +361,7 @@ const handleSubmit = async () => {
             </div>
           </section>
 
-          <!-- 6. 비회원 주문조회 비밀번호 (비회원만) -->
+          <!-- 5. 비회원 주문조회 비밀번호 (비회원만) -->
           <OrderGuestPasswordSection
             v-if="!isMember"
             :model-value="guestPassword"
@@ -383,11 +379,6 @@ const handleSubmit = async () => {
             @open-coupon-modal="openCouponModal"
           /> -->
 
-          <!-- 8. 결제 수단 -->
-          <!-- <OrderPaymentSection
-            v-model="payment"
-            :labels="orderData.sections.payment"
-          /> -->
         </div>
 
         <!-- 결제 금액 사이드바 -->

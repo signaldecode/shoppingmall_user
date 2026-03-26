@@ -120,14 +120,20 @@ const handleBuyNow = (data) => {
   }
 
   // 로그인된 경우 바로 구매
-  buyNow(data.product, data.variant, data.quantity)
+  buyNow(data.product, data.variant, data.quantity, buildOptionName(data))
+}
+
+// 선택된 옵션 텍스트 생성 (variant에 name 없으므로 선택 옵션값으로 조합)
+const buildOptionName = (data) => {
+  const options = data.product.options || []
+  const selected = data.selectedOptions || {}
+  return options.map(opt => selected[opt.id]?.label).filter(Boolean).join(' / ')
 }
 
 // 로그인 후 주문하기
 const handleLoginAndBuy = () => {
   if (!pendingOrderData.value) return
 
-  // sessionStorage에 주문 데이터 저장
   const data = pendingOrderData.value
   const orderItem = {
     productId: data.product.id,
@@ -135,9 +141,9 @@ const handleLoginAndBuy = () => {
     quantity: data.quantity || 1,
     productName: data.product.name,
     productImage: data.product.image,
-    optionName: data.variant?.name || '',
-    price: data.variant?.price || data.product.price,
-    totalPrice: (data.variant?.price || data.product.price) * (data.quantity || 1)
+    optionName: buildOptionName(data),
+    price: data.product.price,
+    totalPrice: data.product.price * (data.quantity || 1)
   }
 
   if (import.meta.client) {
@@ -152,7 +158,6 @@ const handleLoginAndBuy = () => {
 const handleGuestBuy = () => {
   if (!pendingOrderData.value) return
 
-  // sessionStorage에 주문 데이터 저장
   const data = pendingOrderData.value
   const orderItem = {
     productId: data.product.id,
@@ -160,9 +165,9 @@ const handleGuestBuy = () => {
     quantity: data.quantity || 1,
     productName: data.product.name,
     productImage: data.product.image,
-    optionName: data.variant?.name || '',
-    price: data.variant?.price || data.product.price,
-    totalPrice: (data.variant?.price || data.product.price) * (data.quantity || 1)
+    optionName: buildOptionName(data),
+    price: data.product.price,
+    totalPrice: data.product.price * (data.quantity || 1)
   }
 
   if (import.meta.client) {

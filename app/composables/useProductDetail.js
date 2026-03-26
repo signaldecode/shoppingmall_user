@@ -9,9 +9,14 @@ export const useProductDetail = (productId) => {
   // API 호출
   const url = computed(() => `${baseUrl}/products/${productId.value}`)
 
+  // 테넌트 ID 헤더
+  const tenantId = config.public.tenantId
+  const headers = tenantId ? { 'X-Tenant-Id': String(tenantId) } : {}
+
   const { data: response, pending, error, refresh } = useFetch(url, {
     key: `product-detail-${productId.value}`,
-    lazy: true
+    lazy: true,
+    headers
   })
 
   // 날짜 포맷 함수
@@ -26,14 +31,14 @@ export const useProductDetail = (productId) => {
     const p = response.value?.data
     if (!p) return null
 
-    // 대표 이미지 (isPrimary가 true인 것 또는 첫번째)
-    const primaryImage = p.images?.find(img => img.isPrimary) || p.images?.[0]
+    // 대표 이미지 (isThumbnail이 true인 것 또는 첫번째)
+    const primaryImage = p.images?.find(img => img.isThumbnail) || p.images?.[0]
 
     // 이미지 URL 배열 (Hero 컴포넌트용)
     const imageUrls = p.images?.map(img => img.url) || []
 
-    // 가격 정보 (sellingPrice 우선, 없으면 salePrice 폴백)
-    const sellingPrice = p.price?.sellingPrice ?? p.price?.salePrice ?? p.price?.regularPrice ?? 0
+    // 가격 정보
+    const sellingPrice = p.price?.sellingPrice ?? p.price?.regularPrice ?? 0
     const regularPrice = p.price?.regularPrice ?? 0
     const hasDiscount = sellingPrice < regularPrice
 
@@ -45,7 +50,7 @@ export const useProductDetail = (productId) => {
     return {
       id: p.id,
       name: p.name,
-      subtitle: p.summary || '',
+      subtitle: '',
       description: p.description,
       brand: p.brand?.name || '',
       category: p.category?.name || '',
@@ -53,7 +58,7 @@ export const useProductDetail = (productId) => {
       price: sellingPrice,
       originalPrice: hasDiscount ? regularPrice : null,
       discount: p.price?.discountRate || 0,
-      currency: p.price?.currency === 'KRW' ? '원' : p.price?.currency,
+      currency: '원',
       // 프로모션 정보
       promotion: p.price?.promotion ? {
         id: p.price.promotion.id,
@@ -63,40 +68,28 @@ export const useProductDetail = (productId) => {
       // 통계
       rating: p.reviewStats?.ratingAvg || 0,
       reviewCount: p.reviewStats?.totalCount || 0,
-      viewCount: p.viewCount || 0,
       // 이미지
       image: primaryImage?.url || '',
-      imageAlt: primaryImage?.altText || p.name,
+      imageAlt: p.name,
       images: imageUrls,
       detailContent: p.description || '',
-      // 태그
-      isBest: p.tags?.some(t => t.slug === 'best'),
-      isNew: p.tags?.some(t => t.slug === 'new'),
-      isRecommend: p.tags?.some(t => t.slug === 'recommend'),
-      tags: p.tags || [],
-      // 구매 제한
-      maxPurchaseQuantity: p.maxPurchaseQuantity || 10,
       status: p.status,
       // 옵션 그룹 (name별로 values 배열)
       options: p.optionGroups?.map(group => ({
         id: group.id,
         name: group.name,
-        isRequired: group.isRequired,
         values: group.optionValues?.map(opt => ({
           id: opt.id,
           value: opt.value,
           label: opt.value
         })) || []
       })) || [],
-      // 변형(SKU) 정보 - 옵션 조합별 가격/재고
+      // 변형(SKU) 정보 - 옵션 조합별 재고
       variants: p.variants?.map(v => ({
         id: v.id,
-        sku: v.sku,
-        name: v.name,
-        price: v.price,
-        additionalPrice: v.additionalPrice || 0,
-        stockQuantity: v.stockQuantity,
-        stockStatus: v.stockStatus,
+        sku: v.skuCode,
+        stock: v.stock,
+        isActive: v.isActive,
         optionValueIds: v.optionValueIds || []
       })) || []
     }
@@ -110,7 +103,6 @@ export const useProductDetail = (productId) => {
     return p.optionGroups.map(group => ({
       id: group.id,
       name: group.name,
-      isRequired: group.isRequired,
       options: group.optionValues?.map(opt => ({
         id: opt.id,
         value: opt.value,
@@ -126,13 +118,9 @@ export const useProductDetail = (productId) => {
 
     return p.variants.map(v => ({
       id: v.id,
-      sku: v.sku,
-      name: v.name,
-      price: v.price,
-      additionalPrice: v.additionalPrice || 0,
-      stockQuantity: v.stockQuantity,
-      stockStatus: v.stockStatus,
-      imageUrl: v.imageUrl,
+      sku: v.skuCode,
+      stock: v.stock,
+      isActive: v.isActive,
       optionValueIds: v.optionValueIds || []
     }))
   })
@@ -148,7 +136,7 @@ export const useProductDetail = (productId) => {
       title: r.title,
       content: r.content,
       images: r.images || [],
-      username: r.userName || '익명',
+      username: '익명',
       date: formatDate(r.createdAt),
       isPhoto: r.images && r.images.length > 0,
       isBest: r.isBest,

@@ -101,8 +101,8 @@ export const useShopInfo = () => {
   // 기본 배송비
   const baseShippingFee = computed(() => shippingPolicy.value?.baseShippingFee || 0)
 
-  // 계좌 정보
-  const bankInfo = computed(() => shopInfo.value?.bankInfo || {})
+  // 결제 기한 (일)
+  const paymentDeadlineDays = computed(() => shopInfo.value?.paymentDeadlineDays || 3)
 
   return {
     // 상태
@@ -131,6 +131,6 @@ export const useShopInfo = () => {
     shippingPolicy,
     freeShippingAmount,
     baseShippingFee,
-    bankInfo
+    paymentDeadlineDays
   }
 }

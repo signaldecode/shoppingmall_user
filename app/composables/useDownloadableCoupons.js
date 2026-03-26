@@ -96,12 +96,12 @@ export const useDownloadableCoupons = () => {
    * 적용 가능한 쿠폰 목록 조회 (주문 페이지용)
    * GET /coupons/applicable?subtotal={amount}
    */
-  const fetchApplicableCoupons = async (subtotal) => {
+  const fetchApplicableCoupons = async (subtotal, hasPromotion = false) => {
     applicablePending.value = true
     currentSubtotal.value = subtotal
 
     try {
-      const response = await get('/coupons/applicable', { subtotal })
+      const response = await get('/coupons/applicable', { orderSubtotal: subtotal, hasPromotion })
       applicableCoupons.value = (response.data || response || []).map(c => transformApplicableCoupon(c, subtotal))
       return applicableCoupons.value
     } catch (e) {
@@ -121,18 +121,15 @@ export const useDownloadableCoupons = () => {
       ? `${coupon.discountValue}%`
       : `${coupon.discountValue?.toLocaleString()}원`
 
-    // 서버에서 expectedDiscountAmount가 없으면 직접 계산
-    let expectedDiscountAmount = coupon.expectedDiscountAmount
-    if (!expectedDiscountAmount && subtotal > 0) {
+    // 할인 금액 직접 계산
+    let expectedDiscountAmount = 0
+    if (subtotal > 0) {
       if (isPercentage) {
-        // 퍼센트 할인 계산
         expectedDiscountAmount = Math.floor(subtotal * (coupon.discountValue / 100))
-        // 최대 할인 금액 적용
-        if (coupon.maxDiscountAmount) {
-          expectedDiscountAmount = Math.min(expectedDiscountAmount, coupon.maxDiscountAmount)
+        if (coupon.maxDiscount) {
+          expectedDiscountAmount = Math.min(expectedDiscountAmount, coupon.maxDiscount)
         }
       } else {
-        // 정액 할인
         expectedDiscountAmount = coupon.discountValue || 0
       }
     }
@@ -140,15 +137,15 @@ export const useDownloadableCoupons = () => {
     return {
       id: coupon.userCouponId,
       couponId: coupon.couponId,
-      name: coupon.couponName,
+      name: coupon.name,
       discountText,
       discountType: isPercentage ? 'PERCENTAGE' : 'FIXED',
       discountValue: coupon.discountValue,
       minOrderAmount: coupon.minOrderAmount || 0,
-      maxDiscountAmount: coupon.maxDiscountAmount,
+      maxDiscountAmount: coupon.maxDiscount || null,
       validTo: formatDate(coupon.expiredAt),
-      expectedDiscountAmount: expectedDiscountAmount || 0,
-      allowPromotionOverlap: coupon.allowPromotionOverlap ?? false
+      expectedDiscountAmount,
+      applicable: coupon.applicable ?? true
     }
   }
 

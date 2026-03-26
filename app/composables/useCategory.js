@@ -50,9 +50,10 @@ export const useCategory = () => {
 
   /**
    * 루트 카테고리만 반환
+   * /api/v1/categories 응답이 트리 구조이므로 최상위 배열이 곧 루트 카테고리
    */
   const rootCategories = computed(() => {
-    return categories.value.filter(c => !c.parentId)
+    return categories.value
   })
 
   return {

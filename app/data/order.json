@@ -119,59 +119,6 @@
         "unit": "P"
       }
     },
-    "payment": {
-      "title": "결제 수단",
-      "methods": [
-        { "label": "신용카드", "value": "card" },
-        { "label": "무통장입금", "value": "bank" },
-        { "label": "카카오페이", "value": "kakaopay" },
-        { "label": "네이버페이", "value": "naverpay" }
-      ],
-      "card": {
-        "company": {
-          "label": "카드사 선택",
-          "placeholder": "카드사를 선택해주세요",
-          "options": [
-            { "label": "카드사를 선택해주세요", "value": "" },
-            { "label": "삼성카드", "value": "samsung" },
-            { "label": "현대카드", "value": "hyundai" },
-            { "label": "신한카드", "value": "shinhan" },
-            { "label": "KB국민카드", "value": "kb" },
-            { "label": "롯데카드", "value": "lotte" },
-            { "label": "NH농협카드", "value": "nh" }
-          ]
-        },
-        "installment": {
-          "label": "할부 선택",
-          "placeholder": "할부 기간을 선택해주세요",
-          "options": [
-            { "label": "일시불", "value": "0" },
-            { "label": "2개월", "value": "2" },
-            { "label": "3개월", "value": "3" },
-            { "label": "6개월", "value": "6" },
-            { "label": "12개월", "value": "12" }
-          ]
-        }
-      },
-      "bank": {
-        "select": {
-          "label": "입금 은행",
-          "placeholder": "은행을 선택해주세요",
-          "options": [
-            { "label": "은행을 선택해주세요", "value": "" },
-            { "label": "국민은행", "value": "kb" },
-            { "label": "신한은행", "value": "shinhan" },
-            { "label": "우리은행", "value": "woori" },
-            { "label": "하나은행", "value": "hana" },
-            { "label": "농협은행", "value": "nh" }
-          ]
-        },
-        "depositor": {
-          "label": "입금자명",
-          "placeholder": "입금자명을 입력해주세요"
-        }
-      }
-    },
     "agreements": {
       "agreeAll": "전체 약관 동의",
       "terms": {
@@ -220,7 +167,8 @@
     "recipient": "수령인 이름을 입력해주세요.",
     "phone": "배송지 연락처를 입력해주세요.",
     "address": "배송지 주소를 입력해주세요.",
-    "depositor": "입금자명을 입력해주세요."
+    "depositor": "입금자명을 입력해주세요.",
+    "paymentError": "결제 요청 중 오류가 발생했습니다."
   },
   "dummy": {
     "products": [

@@ -78,14 +78,12 @@ export const useProducts = (initialOptions = {}) => {
       href: `/products/${product.id}`,
       image: product.imageUrl,
       imageAlt: product.name,
-      isBest: product.tags?.some(tag => tag.toUpperCase() === 'BEST'),
-      isNew: product.tags?.some(tag => tag.toUpperCase() === 'NEW'),
       name: product.name,
       price: product.sellingPrice || product.regularPrice,
       originalPrice: hasDiscount ? product.regularPrice : null,
       discountRate: product.discountRate || 0,
       currency: '원',
-      tags: product.tags || []
+      promotionName: product.promotionName || ''
     }
   }
 

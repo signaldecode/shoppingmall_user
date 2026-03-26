@@ -13,7 +13,7 @@ useSeoMeta({
   description: paymentData.success.seo.description
 })
 
-const status = ref('loading') // loading | success | error
+const status = ref('loading')
 const errorMessage = ref('')
 
 onMounted(async () => {
@@ -26,18 +26,14 @@ onMounted(async () => {
   }
 
   try {
-    // 서버에 결제 승인 요청
-    const confirmData = {
+    await confirmPayment({
       paymentKey: String(paymentKey),
       orderId: String(orderId),
       amount: Number(amount)
-    }
-    await confirmPayment(confirmData)
+    })
 
-    // sessionStorage에서 주문 정보 가져오기
     const paymentOrder = JSON.parse(sessionStorage.getItem('paymentOrder') || '{}')
 
-    // 장바구니 항목 삭제
     if (paymentOrder.cartItemIds?.length > 0) {
       try {
         await removeFromCart(paymentOrder.cartItemIds)
@@ -46,14 +42,12 @@ onMounted(async () => {
       }
     }
 
-    // 주문 상품 정보 삭제
     clearOrderItems()
     sessionStorage.removeItem('paymentOrder')
 
-    // 주문완료 페이지로 이동
     const queryParams = new URLSearchParams()
-    if (paymentOrder.orderId) queryParams.append('orderId', paymentOrder.orderId)
     if (paymentOrder.orderNumber) queryParams.append('orderNumber', paymentOrder.orderNumber)
+    if (paymentOrder.grandTotal) queryParams.append('amount', paymentOrder.grandTotal)
     router.replace(`/order-complete?${queryParams.toString()}`)
   } catch (err) {
     status.value = 'error'
@@ -68,14 +62,12 @@ const retry = () => navigateTo('/order', { replace: true })
 <template>
   <div class="page-payment-result">
     <main class="payment-result">
-      <!-- 로딩 (승인 처리 중) -->
       <div v-if="status === 'loading'" class="payment-result__loading">
         <BaseSpinner size="large" />
         <h1 class="payment-result__title">{{ paymentData.success.message }}</h1>
         <p class="payment-result__description">{{ paymentData.success.description }}</p>
       </div>
 
-      <!-- 승인 실패 -->
       <div v-else-if="status === 'error'" class="payment-result__error">
         <h1 class="payment-result__title">{{ paymentData.success.errorTitle }}</h1>
         <p class="payment-result__description">{{ errorMessage }}</p>

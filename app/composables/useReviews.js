@@ -73,7 +73,7 @@ export const useReviews = () => {
           id: r.productId,
           name: r.productName,
           thumb: r.productThumbnailUrl || '',
-          rating: r.productRatingAvg || 0,
+          rating: r.productAverageRating || 0,
           reviewCountText: r.productReviewCount ? `${r.productReviewCount}건` : ''
         } : null,
         // 카테고리 정보

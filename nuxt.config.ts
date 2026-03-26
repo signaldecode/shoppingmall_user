@@ -17,11 +17,12 @@ export default defineNuxtConfig({
     public: {
       // Safari 쿠키 문제 해결을 위해 /api 프록시 사용
       apiBase: '/api',
-      tossClientKey: '',
       naverClientId: '',
       naverRedirectUri: '',
       googleClientId: '',
-      googleRedirectUri: ''
+      googleRedirectUri: '',
+      tossClientKey: '',
+      tenantId: ''
     }
   },
 

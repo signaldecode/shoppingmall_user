@@ -54,6 +54,11 @@ export default defineEventHandler(async (event) => {
   if (headers['x-session-id']) {
     requestHeaders['x-session-id'] = headers['x-session-id']
   }
+  // 테넌트 ID (멀티테넌트 지원) - 런타임 설정에서 항상 추가
+  const tenantId = headers['x-tenant-id'] || config.public?.tenantId
+  if (tenantId) {
+    requestHeaders['x-tenant-id'] = String(tenantId)
+  }
 
   try {
     const response = await $fetch.raw(targetUrl, {

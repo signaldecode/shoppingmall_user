@@ -12,7 +12,6 @@ const props = defineProps({
 
 const emit = defineEmits(['update:modelValue'])
 
-const showCardOptions = computed(() => props.modelValue.method === 'card')
 const showBankOptions = computed(() => props.modelValue.method === 'bank')
 
 const updateField = (field, value) => {
@@ -38,34 +37,12 @@ const updateField = (field, value) => {
         @update:model-value="updateField('method', $event)"
       />
 
-      <div v-if="showCardOptions" class="order-payment__card-options">
-        <BaseSelect
-          :model-value="modelValue.cardCompany"
-          :options="labels.card.company.options"
-          :placeholder="labels.card.company.placeholder"
-          variant="box"
-          @update:model-value="updateField('cardCompany', $event)"
-        />
-        <BaseSelect
-          :model-value="modelValue.installment"
-          :options="labels.card.installment.options"
-          :placeholder="labels.card.installment.placeholder"
-          variant="box"
-          @update:model-value="updateField('installment', $event)"
-        />
-      </div>
-
-      <div v-if="showBankOptions" class="order-payment__card-options">
-        <BaseSelect
-          :model-value="modelValue.bank"
-          :options="labels.bank.select.options"
-          :placeholder="labels.bank.select.placeholder"
-          variant="box"
-          @update:model-value="updateField('bank', $event)"
-        />
+      <div v-if="showBankOptions" class="order-payment__bank-options">
         <BaseInput
           :model-value="modelValue.depositor"
+          :label="labels.bank.depositor.label"
           :placeholder="labels.bank.depositor.placeholder"
+          required
           @update:model-value="updateField('depositor', $event)"
         />
       </div>

@@ -57,11 +57,10 @@ const selectedVariant = computed(() => {
   const options = props.product.options || []
   const variants = props.product.variants || []
 
-  // 모든 필수 옵션이 선택되었는지 확인
-  const requiredOptions = options.filter(opt => opt.isRequired)
-  const allRequiredSelected = requiredOptions.every(opt => selectedOptions.value[opt.id])
+  // 모든 옵션이 선택되었는지 확인
+  const allSelected = options.every(opt => selectedOptions.value[opt.id])
 
-  if (!allRequiredSelected || variants.length === 0) return null
+  if (!allSelected || variants.length === 0) return null
 
   // 선택된 옵션 value id 배열
   const selectedValueIds = Object.values(selectedOptions.value)
@@ -89,13 +88,12 @@ const selectedOptionText = computed(() => {
 const isOptionSelected = computed(() => {
   const options = props.product.options || []
   if (options.length === 0) return true
-  const requiredOptions = options.filter(opt => opt.isRequired)
-  return requiredOptions.every(opt => selectedOptions.value[opt.id])
+  return options.every(opt => selectedOptions.value[opt.id])
 })
 
-// 선택된 옵션의 단가 (variant 가격 사용)
+// 선택된 옵션의 단가 (variant에 가격 없으므로 상품 가격 사용)
 const selectedOptionPrice = computed(() => {
-  return selectedVariant.value?.price || props.product.price
+  return props.product.price
 })
 
 const totalPrice = computed(() => {
@@ -235,7 +233,7 @@ defineExpose({
       <div class="product-detail-hero__header">
         <div class="product-detail-hero__title-wrap">
           <h1 class="product-detail-hero__name">{{ product.name || '' }}</h1>
-          <p class="product-detail-hero__subtitle">{{ product.summary || ''}}</p>
+          <p class="product-detail-hero__subtitle">{{ product.subtitle || ''}}</p>
         </div>
         <button
           class="product-detail-hero__share"
@@ -296,7 +294,6 @@ defineExpose({
         >
           <span class="product-detail-hero__option-group-label">
             {{ optionGroup.name }}
-            <span v-if="optionGroup.isRequired" class="product-detail-hero__option-required">*</span>
           </span>
           <BaseSelect
             :model-value="selectedOptions[optionGroup.id]"

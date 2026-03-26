@@ -68,7 +68,7 @@ export const useOrder = () => {
    * @param {Object} variant - 선택된 옵션(variant)
    * @param {Number} quantity - 수량
    */
-  const buyNow = (product, variant, quantity = 1) => {
+  const buyNow = (product, variant, quantity = 1, optionName = '') => {
     // 주문 페이지로 이동하면서 상품 정보 전달
     const orderItem = {
       productId: product.id,
@@ -77,9 +77,9 @@ export const useOrder = () => {
       // UI 표시용 추가 정보
       productName: product.name,
       productImage: product.image,
-      optionName: variant?.name || '',
-      price: variant?.price || product.price,
-      totalPrice: (variant?.price || product.price) * (quantity || 1)
+      optionName: optionName || '',
+      price: product.price,
+      totalPrice: product.price * (quantity || 1)
     }
 
     // sessionStorage에 임시 저장 (주문 페이지에서 사용)

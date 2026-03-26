@@ -43,13 +43,12 @@ export const usePayments = () => {
   /**
    * 결제 요청 (토스페이먼츠 결제창 호출)
    * @param {object} params
-   * @param {string} params.method - 결제수단 (CARD, TRANSFER, VIRTUAL_ACCOUNT, MOBILE_PHONE 등)
    * @param {number} params.amount - 결제금액
    * @param {string} params.orderId - 주문 ID (고유값)
    * @param {string} params.orderName - 주문명
-   * @param {string} params.customerName - 구매자 이름
-   * @param {string} params.customerEmail - 구매자 이메일
-   * @param {string} params.customerKey - 구매자 키 (회원: 고유ID, 비회원: ANONYMOUS)
+   * @param {string} [params.customerName] - 구매자 이름
+   * @param {string} [params.customerEmail] - 구매자 이메일
+   * @param {string} [params.customerKey] - 구매자 키 (회원: 고유ID, 비회원: 랜덤)
    * @param {string} params.successUrl - 성공 리다이렉트 URL
    * @param {string} params.failUrl - 실패 리다이렉트 URL
    */
@@ -60,7 +59,6 @@ export const usePayments = () => {
       const tossPayments = await loadTossPayments()
       if (!tossPayments) throw new Error('결제 모듈을 불러올 수 없습니다.')
 
-      // customerKey: 회원은 고유ID, 비회원은 랜덤 키 생성
       const customerKey = params.customerKey
         || `guest_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`
       const payment = tossPayments.payment({ customerKey })
@@ -75,7 +73,6 @@ export const usePayments = () => {
         orderName: String(params.orderName),
         successUrl: params.successUrl,
         failUrl: params.failUrl,
-        // PC: iframe(모달), 모바일: 자동 리다이렉트
         windowTarget: 'iframe'
       }
       if (params.customerName) requestParams.customerName = String(params.customerName)
@@ -95,10 +92,9 @@ export const usePayments = () => {
   /**
    * 결제 승인
    * POST /payments/confirm
-   * @param {object} params
-   * @param {string} params.paymentKey - 토스에서 발급한 결제 키
-   * @param {string} params.orderId - 주문 ID
-   * @param {number} params.amount - 결제 금액
+   * @param {string} paymentKey - 토스에서 발급한 결제 키
+   * @param {string} orderId - 주문 ID
+   * @param {number} amount - 결제 금액
    */
   const confirmPayment = async ({ paymentKey, orderId, amount }) => {
     pending.value = true
@@ -112,7 +108,6 @@ export const usePayments = () => {
       })
       return response.data || response
     } catch (err) {
-      console.error('confirmPayment 에러 응답:', err.data || err)
       error.value = err.data?.message || err.message || '결제 승인에 실패했습니다.'
       throw err
     } finally {
@@ -124,9 +119,8 @@ export const usePayments = () => {
    * 결제 취소/환불
    * POST /payments/{paymentKey}/cancel
    * @param {string} paymentKey - 결제 키
-   * @param {object} body
-   * @param {string} body.cancelReason - 취소 사유
-   * @param {number} [body.cancelAmount] - 부분 취소 금액 (미입력 시 전액 취소)
+   * @param {string} cancelReason - 취소 사유
+   * @param {number} [cancelAmount] - 부분 취소 금액 (미입력 시 전액 취소)
    */
   const cancelPayment = async (paymentKey, { cancelReason, cancelAmount } = {}) => {
     pending.value = true
@@ -195,7 +189,7 @@ export const usePayments = () => {
    * @param {string} body.cardNumber - 카드번호
    * @param {string} body.cardExpirationYear - 카드 만료 연도 (YY)
    * @param {string} body.cardExpirationMonth - 카드 만료 월 (MM)
-   * @param {number} body.installmentPlanMonths - 할부 개월 (0=일시불)
+   * @param {number} [body.installmentPlanMonths] - 할부 개월 (0=일시불)
    * @param {string} body.orderName - 주문명
    */
   const keyInPayment = async (body) => {

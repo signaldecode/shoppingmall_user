@@ -13,6 +13,10 @@ export const useApi = () => {
   // SSR에서 쿠키 전달을 위해 요청 헤더 가져오기 (composable 컨텍스트에서 호출)
   const cookieHeaders = import.meta.server ? useRequestHeaders(['cookie']) : {}
 
+  // 테넌트 ID 헤더
+  const tenantId = config.public.tenantId
+  const tenantHeaders = tenantId ? { 'X-Tenant-Id': String(tenantId) } : {}
+
   /**
    * 엔드포인트 URL 생성
    * 클라이언트: /api 프록시 사용 (Safari 쿠키 문제 해결)
@@ -78,8 +82,8 @@ export const useApi = () => {
     // FormData일 때는 Content-Type 설정하지 않음 (브라우저가 자동 설정)
     const isFormData = options.body instanceof FormData
     const headers = isFormData
-      ? { ...cookieHeaders, ...options.headers }
-      : { 'Content-Type': 'application/json', ...cookieHeaders, ...options.headers }
+      ? { ...cookieHeaders, ...tenantHeaders, ...options.headers }
+      : { 'Content-Type': 'application/json', ...cookieHeaders, ...tenantHeaders, ...options.headers }
 
     try {
       return await $fetch(url, {

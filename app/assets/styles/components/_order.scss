@@ -445,12 +445,13 @@ $header-height: 80px;
 .order-payment {
   display: flex;
   flex-direction: column;
-  gap: $padding-4;
+  gap: $padding-5;
 
-  &__card-options {
+  &__bank-options {
     display: flex;
     flex-direction: column;
-    gap: $padding-3;
+    gap: $padding-4;
+    padding-top: $padding-3;
   }
 }
 
@@ -864,24 +865,11 @@ $header-height: 80px;
 // --------------------------------------------
 
 .payment-result {
-  max-width: 1080px;
-  margin: 0 auto;
-  width: 100%;
-  padding-left: $container-padding;
-  padding-right: $container-padding;
-  padding-top: calc(#{$header-height} + #{$padding-11});
-  padding-bottom: $padding-12;
-  min-height: 60vh;
   display: flex;
-  align-items: center;
   justify-content: center;
-
-  @include mobile {
-    padding-top: calc(60px + #{$padding-8});
-    padding-bottom: $padding-10;
-    padding-left: $padding-5;
-    padding-right: $padding-5;
-  }
+  align-items: center;
+  min-height: 60vh;
+  padding: $padding-12 $container-padding;
 
   &__loading,
   &__error {
@@ -889,49 +877,46 @@ $header-height: 80px;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: $padding-4;
+    max-width: 480px;
   }
 
   &__icon {
-    color: $Text-Thirty-text-color;
-    margin-bottom: $padding-4;
+    color: $Error-color;
+    margin-bottom: $padding-6;
   }
 
   &__title {
     @include typo-headline-3;
     color: $Text-Primary-text-color;
-    margin: $padding-4 0 0;
-
-    @include mobile {
-      @include typo-title-3;
-    }
+    margin: $padding-6 0 $padding-3;
   }
 
   &__description {
     @include typo-body-2;
     color: $Text-Secondary-text-color;
-    margin: 0;
+    margin: 0 0 $padding-6;
   }
 
   &__reason {
     @include typo-body-3;
-    color: $Text-Thirty-text-color;
-    margin: $padding-2 0 0;
-    padding: $padding-3 $padding-5;
+    color: $Text-Secondary-text-color;
+    margin: 0 0 $padding-8;
+    padding: $padding-4;
     background: $Bg-Primary-bg-color;
-    border-radius: 4px;
+    border-radius: 8px;
+    width: 100%;
   }
 
   &__reason-label {
-    color: $Text-Secondary-text-color;
-    font-weight: 600;
-    margin-right: $padding-2;
+    display: block;
+    @include typo-body-3;
+    color: $Text-Thirty-text-color;
+    margin-bottom: $padding-2;
   }
 
   &__buttons {
     display: flex;
     gap: $padding-4;
-    margin-top: $padding-8;
 
     @include mobile {
       flex-direction: column;
@@ -939,3 +924,4 @@ $header-height: 80px;
     }
   }
 }
+

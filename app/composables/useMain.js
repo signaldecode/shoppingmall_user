@@ -27,15 +27,12 @@ export const useMain = () => {
       href: `/products/${product.id}`,
       image: product.imageUrl,
       imageAlt: product.name,
-      isBest: product.tags?.some(tag => tag.toUpperCase() === 'BEST') || product.isBest,
-      isNew: product.tags?.some(tag => tag.toUpperCase() === 'NEW') || product.isNew,
       name: product.name,
       price: product.sellingPrice || product.regularPrice,
       originalPrice: hasDiscount ? product.regularPrice : null,
       discountRate: product.discountRate || 0,
       currency: '원',
-      rating: product.ratingAvg,
-      reviewCount: product.reviewCount
+      promotionName: product.promotionName || ''
     }
   }
 

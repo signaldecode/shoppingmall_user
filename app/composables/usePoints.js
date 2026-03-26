@@ -1,150 +1,69 @@
 /**
  * 적립금 관리 API composable
- * GET /users/points          - 적립금 잔액 조회
- * GET /users/points/history  - 적립금 내역 조회
+ * GET /users/me - 사용자 정보에서 적립금 잔액 조회 (PointInfo: { currentPoint, totalEarned, totalUsed })
+ *
+ * 참고: 별도의 /users/points/history 엔드포인트 없음
+ * 적립금 내역은 백엔드에 해당 API가 추가될 때까지 빈 배열 반환
  */
-
-// 더미 데이터
-const DUMMY_BALANCE = 15000;
-
-const DUMMY_HISTORY = [
-  {
-    id: 1,
-    createdAt: "2025-02-01T10:30:00",
-    description: "상품 구매 적립 (주문번호: ORD20250201001)",
-    amount: 3000,
-    status: "EARNED",
-  },
-  {
-    id: 2,
-    createdAt: "2025-01-28T14:20:00",
-    description: "적립금 사용 (주문번호: ORD20250128002)",
-    amount: -5000,
-    status: "USED",
-  },
-  {
-    id: 3,
-    createdAt: "2025-01-15T09:00:00",
-    description: "회원가입 축하 적립금",
-    amount: 10000,
-    status: "EARNED",
-  },
-  {
-    id: 4,
-    createdAt: "2025-01-10T16:45:00",
-    description: "리뷰 작성 적립",
-    amount: 500,
-    status: "EARNED",
-  },
-  {
-    id: 5,
-    createdAt: "2024-12-25T12:00:00",
-    description: "크리스마스 이벤트 적립금",
-    amount: 5000,
-    status: "EARNED",
-  },
-  {
-    id: 6,
-    createdAt: "2024-12-20T11:30:00",
-    description: "주문 취소로 인한 적립금 취소",
-    amount: -1500,
-    status: "CANCELLED",
-  },
-  {
-    id: 7,
-    createdAt: "2024-11-30T23:59:59",
-    description: "유효기간 만료 소멸",
-    amount: -2000,
-    status: "EXPIRED",
-  },
-];
 
 export const usePoints = () => {
   const { get } = useApi();
 
   const balance = ref(0);
+  const totalEarned = ref(0);
+  const totalUsed = ref(0);
   const history = ref([]);
   const pending = ref(false);
   const error = ref(null);
 
   /**
    * 적립금 잔액 조회
+   * UserMeResponse.point = { currentPoint: int, totalEarned: int, totalUsed: int }
    */
   const fetchBalance = async () => {
     pending.value = true
     error.value = null
 
-    // TODO: API 연동 시 주석 해제
-    // try {
-    //   const response = await get('/users/points')
-    //   balance.value = response.data?.balance ?? response.balance ?? response ?? 0
-    //   return balance.value
-    // } catch (e) {
-    //   balance.value = DUMMY_BALANCE
-    //   console.error('Failed to fetch points balance, using dummy data:', e)
-    //   return balance.value
-    // } finally {
-    //   pending.value = false
-    // }
+    try {
+      const response = await get('/users/me')
+      const data = response.data || response
+      const pointInfo = data?.point || {}
 
-    // 더미 데이터 사용
-    balance.value = DUMMY_BALANCE
-    pending.value = false
-    return balance.value
+      balance.value = pointInfo.currentPoint ?? 0
+      totalEarned.value = pointInfo.totalEarned ?? 0
+      totalUsed.value = pointInfo.totalUsed ?? 0
+
+      return balance.value
+    } catch (e) {
+      console.error('Failed to fetch points balance:', e)
+      balance.value = 0
+      return balance.value
+    } finally {
+      pending.value = false
+    }
   }
 
   /**
    * 적립금 내역 조회
-   * @param {object} params - 조회 파라미터
-   * @param {string} params.period - 기간 필터 (all, 1month, 3months, 6months, 1year)
+   * 현재 백엔드에 별도 history 엔드포인트 없음 → 빈 배열 반환
    */
-  const fetchHistory = async (params = {}) => {
+  const fetchHistory = async () => {
     pending.value = true
     error.value = null
 
-    // TODO: API 연동 시 주석 해제
-    // try {
-    //   const queryParams = {}
-    //
-    //   // 기간 필터 적용
-    //   if (params.period && params.period !== 'all') {
-    //     const now = new Date()
-    //     let startDate = new Date()
-    //
-    //     switch (params.period) {
-    //       case '1month':
-    //         startDate.setMonth(now.getMonth() - 1)
-    //         break
-    //       case '3months':
-    //         startDate.setMonth(now.getMonth() - 3)
-    //         break
-    //       case '6months':
-    //         startDate.setMonth(now.getMonth() - 6)
-    //         break
-    //       case '1year':
-    //         startDate.setFullYear(now.getFullYear() - 1)
-    //         break
-    //     }
-    //
-    //     queryParams.startDate = startDate.toISOString().split('T')[0]
-    //     queryParams.endDate = now.toISOString().split('T')[0]
-    //   }
-    //
-    //   const response = await get('/users/points/history', queryParams)
-    //   history.value = response.data || response || []
-    //   return history.value
-    // } catch (e) {
-    //   history.value = DUMMY_HISTORY
-    //   console.error('Failed to fetch points history, using dummy data:', e)
-    //   return history.value
-    // } finally {
-    //   pending.value = false
-    // }
-
-    // 더미 데이터 사용
-    history.value = DUMMY_HISTORY
-    pending.value = false
-    return history.value
+    try {
+      // 백엔드에 /users/points/history 엔드포인트가 추가되면 여기서 호출
+      // const response = await get('/users/points/history', queryParams)
+      // history.value = response.data?.content || []
+      history.value = []
+      return history.value
+    } catch (e) {
+      console.error('Failed to fetch points history:', e)
+      history.value = []
+      return history.value
+    } finally {
+      pending.value = false
+    }
   }
 
   /**
@@ -183,6 +102,8 @@ export const usePoints = () => {
   return {
     // 상태
     balance,
+    totalEarned,
+    totalUsed,
     history,
     transformedHistory,
     pending,

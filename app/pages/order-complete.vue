@@ -8,7 +8,7 @@ definePageMeta({
 })
 
 const route = useRoute()
-const { bankInfo } = useShopInfo()
+const { paymentDeadlineDays } = useShopInfo()
 
 // SEO
 useHead({ title: orderCompleteData.seo.title })
@@ -55,14 +55,13 @@ const amount = computed(() => {
   return Number(amt)
 })
 
-// 계좌 정보 (API 응답 우선, shop-info fallback)
+// 계좌 정보 (주문 응답의 bankTransferInfo에서 가져옴)
 const bankAccount = computed(() => {
-  const transferInfo = orderData.value?.bankTransferInfo
-  const shopInfo = bankInfo.value || {}
+  const transferInfo = orderData.value?.bankTransferInfo || {}
   return {
-    bankName: transferInfo?.bankName || shopInfo.bankName || '',
-    accountNumber: transferInfo?.accountNumber || shopInfo.bankAccount || '',
-    accountHolder: transferInfo?.accountHolder || shopInfo.bankHolder || ''
+    bankName: transferInfo.bankName || '',
+    accountNumber: transferInfo.accountNumber || '',
+    accountHolder: transferInfo.accountHolder || ''
   }
 })
 

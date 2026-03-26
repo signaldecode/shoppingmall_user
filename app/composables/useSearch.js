@@ -48,15 +48,12 @@ export const useSearch = () => {
     href: `/products/${product.id}`,
     image: product.imageUrl,
     imageAlt: product.name,
-    tags: product.tags || [],
     name: product.name,
-    subtitle: '',
-    price: product.salePrice || product.regularPrice,
-    originalPrice: product.salePrice ? product.regularPrice : null,
-    discountRate: product.discountRate,
+    price: product.sellingPrice || product.regularPrice,
+    originalPrice: product.sellingPrice && product.sellingPrice < product.regularPrice ? product.regularPrice : null,
+    discountRate: product.discountRate || 0,
     currency: '원',
-    rating: product.ratingAvg,
-    reviewCount: product.reviewCount
+    promotionName: product.promotionName || ''
   })
 
   return {
