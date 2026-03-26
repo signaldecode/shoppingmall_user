@@ -26,10 +26,12 @@
     }
   }
 
-  // Scrolled state
+  // Scrolled state - glassmorphism (portfolio 디자인)
   &--scrolled {
-    background: $Primary-white-color;
-    border-bottom: 1px solid $Border-Border-line-100;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
 
     .header__menu-btn,
     .header__nav-link,
@@ -127,7 +129,7 @@
     @include typo-title-3;
     color: $Primary-white-color;
     font-weight: 700;
-    letter-spacing: -0.5px;
+    letter-spacing: 0.12em;
     text-decoration: none;
     transition: color 0.3s ease;
 

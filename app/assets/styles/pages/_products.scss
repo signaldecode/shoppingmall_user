@@ -1,0 +1,98 @@
+// ============================================
+// 상품 목록 페이지 (portfolio 디자인)
+// ============================================
+
+@use '../tokens/colors' as *;
+@use '../tokens/spacing' as *;
+@use '../tokens/typography' as *;
+@use '../tokens/breakpoints' as *;
+
+.page-products {
+  min-height: 100vh;
+  padding-top: 80px;
+
+  @include mobile {
+    padding-top: 60px;
+  }
+}
+
+.products-page {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 80px 8vw 120px;
+
+  @include tablet {
+    padding: 60px 6vw 100px;
+  }
+
+  @include mobile {
+    padding: 40px 4vw 80px;
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: $padding-11;
+
+    @include mobile {
+      margin-bottom: $padding-8;
+    }
+  }
+
+  &__title {
+    font-family: 'Playfair Display', 'Pretendard Variable', Pretendard, sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: $Text-Primary-text-color;
+    margin-bottom: $padding-3;
+
+    @include mobile {
+      font-size: 32px;
+    }
+  }
+
+  &__subtitle {
+    @include typo-body-1;
+    color: $Text-Thirty-text-color;
+  }
+
+  &__toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $padding-8;
+    padding-bottom: $padding-4;
+    border-bottom: 1px solid $Border-Border-line-100;
+  }
+
+  &__count {
+    @include typo-body-3;
+    color: $Text-Thirty-text-color;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: $padding-8 $padding-6;
+
+    @include tablet {
+      grid-template-columns: repeat(3, 1fr);
+      gap: $padding-6 $padding-4;
+    }
+
+    @include mobile {
+      grid-template-columns: repeat(2, 1fr);
+      gap: $padding-4 $padding-3;
+    }
+  }
+
+  &__loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+  }
+
+  &__pagination {
+    margin-top: $padding-12;
+  }
+}

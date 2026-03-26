@@ -1,5 +1,5 @@
 // ============================================
-// 풋터 스타일
+// 풋터 스타일 (portfolio 컴팩트 디자인)
 // ============================================
 
 @use '../tokens/colors' as *;
@@ -8,120 +8,98 @@
 @use '../tokens/breakpoints' as *;
 
 .footer {
-  background: $Black-Primary-black-900;
-  color: $Primary-white-color;
+  background: $Brown-800;
+  color: #f4f4f4;
   margin-top: $padding-section;
 
   &__inner {
-    max-width: 1440px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: $padding-12 $container-padding;
-
-    @include tablet {
-      padding: $padding-10 $padding-6;
-    }
+    padding: 84px 24px;
 
     @include mobile {
-      padding: $padding-6;
+      padding: 48px 20px;
     }
   }
 
   &__top {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: $padding-10;
+    gap: 24px;
 
     @include mobile {
       flex-direction: column;
-      gap: $padding-4;
-      margin-bottom: $padding-4;
+      align-items: flex-start;
     }
   }
 
   &__left {
     display: flex;
     flex-direction: column;
-    gap: $padding-5;
-
-    @include mobile {
-      gap: $padding-3;
-    }
   }
 
+  // 로고
   &__logo {
-    display: flex;
-    align-items: center;
-    gap: $padding-3;
+    margin-bottom: 12px;
   }
 
   &__logo-image {
-    width: 24px;
     height: 24px;
+    width: auto;
     object-fit: contain;
   }
 
   &__logo-text {
-    font-size: 30px;
-    line-height: 1.2;
-    color: $Primary-white-color;
+    font-size: 32px;
     font-weight: 700;
-    letter-spacing: 1px;
-
-    @include mobile {
-      @include typo-title-6;
-      font-weight: 700;
-      letter-spacing: 1px;
-    }
+    color: #f4f4f4;
+    line-height: 1.2;
   }
 
+  // 네비게이션
   &__nav {
-    margin-top: $padding-2;
+    margin-bottom: 16px;
 
     @include mobile {
-      display: none;
+      margin-bottom: 12px;
     }
   }
 
   &__nav-list {
     display: flex;
     flex-wrap: wrap;
-    gap: $padding-6;
+    gap: 14px;
     list-style: none;
     margin: 0;
     padding: 0;
-
-    @include mobile {
-      gap: $padding-4;
-    }
   }
 
   &__nav-link {
-    @include typo-title-3;
-    color: $Primary-white-color;
+    color: #f4f4f4;
     text-decoration: none;
-    transition: color 0.2s ease;
-
-    @include mobile {
-      @include typo-body-3;
-    }
+    font-size: 15px;
+    transition: opacity 0.2s ease;
 
     &:hover {
-      color: $Black-Primary-black-300;
+      opacity: 0.7;
+    }
+
+    @include mobile {
+      font-size: 13px;
     }
   }
 
+  // 회사 정보
   &__info {
     display: flex;
     flex-direction: column;
-    gap: $padding-2;
-    margin-top: $padding-2;
+    gap: 4px;
   }
 
   &__info-line {
-    @include typo-body-2;
-    color: $Black-Primary-black-400;
-    margin: 0;
+    margin: 4px 0;
+    font-size: 13px;
+    color: #bdbdbd;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -129,23 +107,22 @@
     span {
       &:not(:last-child)::after {
         content: '|';
-        margin: 0 $padding-2;
-        color: $Black-Primary-black-600;
+        margin: 0 8px;
+        color: #8a8a8a;
       }
     }
 
     @include mobile {
-      @include typo-body-4;
+      font-size: 12px;
       flex-direction: column;
       align-items: flex-start;
-      gap: $padding-1;
+      gap: 2px;
 
       span:not(:last-child)::after {
         display: none;
       }
     }
 
-    // 첫 번째 info-line: 모바일에서도 row 유지
     &--primary {
       @include mobile {
         flex-direction: row;
@@ -155,28 +132,28 @@
         span:not(:last-child)::after {
           display: inline;
           content: '|';
-          margin: 0 $padding-2;
-          color: $Black-Primary-black-600;
+          margin: 0 6px;
+          color: #8a8a8a;
         }
       }
     }
   }
 
-  // 모바일 토글 버튼
+  // 모바일 토글
   &__info-toggle {
     display: none;
     align-items: center;
-    gap: $padding-1;
+    gap: 4px;
     background: transparent;
     border: none;
     cursor: pointer;
-    @include typo-body-2;
-    color: $Black-Primary-black-400;
+    font-size: 13px;
+    color: #bdbdbd;
     padding: 0;
-    margin-top: $padding-2;
+    margin-top: 4px;
 
     .base-icon {
-      color: $Black-Primary-black-400;
+      color: #bdbdbd;
       transition: transform 0.3s ease;
     }
 
@@ -186,15 +163,14 @@
 
     @include mobile {
       display: inline-flex;
-      @include typo-body-4;
+      font-size: 12px;
     }
   }
 
-  // 토글 상세 영역
   &__info-detail {
     display: flex;
     flex-direction: column;
-    gap: $padding-2;
+    gap: 4px;
 
     @include mobile {
       overflow: hidden;
@@ -206,45 +182,46 @@
       &--open {
         max-height: 200px;
         opacity: 1;
-        margin-top: $padding-2;
+        margin-top: 4px;
       }
     }
   }
 
   &__phone-link {
-    color: $Black-Primary-black-400;
+    color: #bdbdbd;
     text-decoration: none;
     transition: color 0.2s ease;
 
     &:hover {
-      color: $Primary-white-color;
+      color: #f4f4f4;
     }
   }
 
+  // 소셜
   &__social {
     display: flex;
-    align-items: center;
-    gap: $padding-3;
+    align-items: flex-start;
+    gap: 12px;
     flex-shrink: 0;
 
     @include mobile {
-      display: none;
+      align-self: flex-end;
     }
   }
 
   &__social-link {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    background: $Black-Primary-black-700;
-    color: $Primary-white-color;
+    background: #7c7268;
+    color: #fff;
     transition: background 0.2s ease;
 
     &:hover {
-      background: $Black-Primary-black-600;
+      background: #998d82;
     }
 
     .icon-social {
@@ -258,39 +235,28 @@
     }
   }
 
+  // 저작권
   &__copyright {
-    @include typo-body-2;
-    color: $Black-Primary-black-500;
-    margin: 0;
-    padding-top: $padding-6;
+    margin: 18px 0 0;
+    font-size: 14px;
+    color: #8a8a8a;
 
     @include mobile {
-      @include typo-body-5;
-      padding-top: 0;
+      font-size: 12px;
+      margin-top: 14px;
     }
   }
 }
 
-// Icon Social base styles
+// Icon Social base
 .icon-social {
   display: inline-flex;
   align-items: center;
   justify-content: center;
 
-  &--sm {
-    width: 16px;
-    height: 16px;
-  }
-
-  &--md {
-    width: 20px;
-    height: 20px;
-  }
-
-  &--lg {
-    width: 24px;
-    height: 24px;
-  }
+  &--sm { width: 16px; height: 16px; }
+  &--md { width: 20px; height: 20px; }
+  &--lg { width: 24px; height: 24px; }
 
   svg {
     width: 100%;

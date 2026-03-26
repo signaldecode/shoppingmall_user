@@ -4,7 +4,7 @@
     "description": "장바구니에 담긴 상품을 확인하고 주문하세요."
   },
   "page": {
-    "title": "장바구니"
+    "title": "Cart"
   },
   "toolbar": {
     "selectAll": "전체선택",

@@ -136,19 +136,6 @@
 
   &__hero-wrap {
     position: relative;
-    min-height: 800px;
-
-    @media (max-width: 1024px) {
-      min-height: 600px;
-    }
-
-    @media (max-width: 768px) {
-      min-height: 500px;
-    }
-
-    @media (max-width: 480px) {
-      min-height: 400px;
-    }
   }
 
   > main {
@@ -263,3 +250,26 @@
 .gap-6 { gap: $padding-6; }
 .gap-8 { gap: $padding-8; }
 .gap-10 { gap: $padding-10; }
+
+// --------------------------------------------
+// Scroll Reveal Animation (portfolio 디자인)
+// --------------------------------------------
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+
+  &.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

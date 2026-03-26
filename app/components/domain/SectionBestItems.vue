@@ -141,6 +141,16 @@ onUnmounted(() => {
             class="section-best-items__item"
             :style="{ width: itemWidth + 'px' }"
           />
+          <!-- 더보기 카드 (portfolio 스타일) -->
+          <NuxtLink
+            v-if="data.viewAllHref"
+            :to="data.viewAllHref"
+            class="section-best-items__item section-best-items__more-card"
+            :style="{ width: itemWidth + 'px' }"
+          >
+            <span class="section-best-items__more-label">더 많은 상품 확인하기</span>
+            <span class="section-best-items__more-icon">→</span>
+          </NuxtLink>
         </div>
       </div>
     </div>

@@ -23,16 +23,16 @@ const themeColors = {
   },
   brown: {
     primary: {
-      50: '#EFEBE9',
-      100: '#D7CCC8',
-      200: '#BCAAA4',
-      300: '#A1887F',
-      400: '#8D6E63',
-      500: '#795548',
-      600: '#6D4C41',
-      700: '#5D4037',
-      800: '#4E342E',
-      900: '#3E2723'
+      50: '#F7F2EC',
+      100: '#F4EFEA',
+      200: '#E7DFD6',
+      300: '#D6CDC3',
+      400: '#B4A79A',
+      500: '#9A9087',
+      600: '#8A8177',
+      700: '#6F675E',
+      800: '#6B5A47',
+      900: '#5A4633'
     }
   },
   blue: {
@@ -80,8 +80,8 @@ const hexToRgb = (hex) => {
 const applyThemeToRoot = (themeName) => {
   if (typeof document === 'undefined') return
 
-  const normalizedTheme = (themeName || 'green').toLowerCase()
-  const colors = themeColors[normalizedTheme] || themeColors.green
+  const normalizedTheme = (themeName || 'brown').toLowerCase()
+  const colors = themeColors[normalizedTheme] || themeColors.brown
   const root = document.documentElement
 
   // Primary 컬러 변수 설정

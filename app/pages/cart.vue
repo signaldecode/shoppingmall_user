@@ -15,25 +15,6 @@ const authStore = useAuthStore()
 // 비회원 주문 모달
 const showGuestModal = ref(false)
 
-// 추천상품: best 리스트 재사용
-const { products: bestProducts, pending: bestPending } = useProducts({ tag: 'best', size: 4 })
-
-// 추천상품 모바일 스와이프
-const recoGridRef = ref(null)
-
-const { swipeEvents: recoSwipeEvents } = useSwipe({
-  onSwipeLeft: () => {
-    if (recoGridRef.value) {
-      recoGridRef.value.scrollBy({ left: recoGridRef.value.offsetWidth * 0.6, behavior: 'smooth' })
-    }
-  },
-  onSwipeRight: () => {
-    if (recoGridRef.value) {
-      recoGridRef.value.scrollBy({ left: -(recoGridRef.value.offsetWidth * 0.6), behavior: 'smooth' })
-    }
-  }
-})
-
 // 장바구니 조회
 onMounted(async () => {
   try {
@@ -330,28 +311,6 @@ const submitLabel = computed(() => {
         />
       </div>
 
-      <!-- 추천상품 -->
-      <section class="cart-reco" aria-label="추천상품">
-        <header class="cart-reco__header">
-          <h2 class="cart-reco__title">{{ cartData.recommend.title }}</h2>
-        </header>
-
-        <div
-          ref="recoGridRef"
-          class="cart-reco__grid"
-          v-on="recoSwipeEvents"
-        >
-          <ProductCard
-            v-for="p in bestProducts"
-            :key="p.id"
-            :product="p"
-            :show-badge="false"
-            :show-rating="true"
-          />
-        </div>
-
-        <p v-if="bestPending" class="cart-reco__loading">추천상품을 불러오는 중...</p>
-      </section>
     </main>
 
     <FloatingPaymentBar

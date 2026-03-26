@@ -1,0 +1,251 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "name": "그래픽T",
+      "price": 189000,
+      "originalPrice": null,
+      "discountRate": 20,
+      "image": "/images/product1.png",
+      "imageAlt": "그래픽T",
+      "href": "/products/1",
+      "category": "상의",
+      "isBest": false,
+      "isNew": true,
+      "colors": [
+        { "name": "IVORY", "value": "#f7f0e8" },
+        { "name": "BROWN", "value": "#d2c2b4" },
+        { "name": "BLACK", "value": "#2d2a27" }
+      ],
+      "rating": 4.8,
+      "reviewCount": 124,
+      "currency": "원"
+    },
+    {
+      "id": "2",
+      "name": "후리스 크루넥T",
+      "price": 69000,
+      "originalPrice": null,
+      "discountRate": 20,
+      "image": "/images/product2.png",
+      "imageAlt": "후리스 크루넥T",
+      "href": "/products/2",
+      "category": "상의",
+      "isBest": false,
+      "isNew": true,
+      "colors": [
+        { "name": "IVORY", "value": "#f3f1ee" },
+        { "name": "BEIGE", "value": "#e7d9c7" },
+        { "name": "BLUE", "value": "#b0b7be" }
+      ],
+      "rating": 4.6,
+      "reviewCount": 98,
+      "currency": "원"
+    },
+    {
+      "id": "3",
+      "name": "웜 코튼 크루넥T",
+      "price": 79000,
+      "originalPrice": null,
+      "discountRate": 20,
+      "image": "/images/product3.png",
+      "imageAlt": "웜 코튼 크루넥T",
+      "href": "/products/3",
+      "category": "상의",
+      "isBest": false,
+      "isNew": true,
+      "colors": [
+        { "name": "CREAM", "value": "#f1ebe2" },
+        { "name": "STONE", "value": "#d7d0c7" },
+        { "name": "SLATE", "value": "#8e9aa7" }
+      ],
+      "rating": 4.7,
+      "reviewCount": 76,
+      "currency": "원"
+    },
+    {
+      "id": "4",
+      "name": "워셔블 파카",
+      "price": 129000,
+      "originalPrice": null,
+      "discountRate": 20,
+      "image": "/images/product4.png",
+      "imageAlt": "워셔블 파카",
+      "href": "/products/4",
+      "category": "아우터",
+      "isBest": false,
+      "isNew": true,
+      "colors": [
+        { "name": "FOREST", "value": "#2f3b2f" },
+        { "name": "SAND", "value": "#c9b7a3" },
+        { "name": "CHARCOAL", "value": "#1f262c" }
+      ],
+      "rating": 4.9,
+      "reviewCount": 142,
+      "currency": "원"
+    },
+    {
+      "id": "5",
+      "name": "웜라인 팬츠",
+      "price": 99000,
+      "originalPrice": null,
+      "discountRate": 20,
+      "image": "/images/product5.png",
+      "imageAlt": "웜라인 팬츠",
+      "href": "/products/5",
+      "category": "하의",
+      "isBest": false,
+      "isNew": true,
+      "colors": [
+        { "name": "BLACK", "value": "#2b2b2b" },
+        { "name": "TAUPE", "value": "#b7a89a" },
+        { "name": "IVORY", "value": "#f5f0ea" }
+      ],
+      "rating": 4.5,
+      "reviewCount": 64,
+      "currency": "원"
+    },
+    {
+      "id": "6",
+      "name": "플러피 후리스 풀집 재킷",
+      "price": 59000,
+      "originalPrice": null,
+      "discountRate": 0,
+      "image": "/images/product6.png",
+      "imageAlt": "플러피 후리스 풀집 재킷",
+      "href": "/products/6",
+      "category": "아우터",
+      "isBest": true,
+      "isNew": false,
+      "colors": [
+        { "name": "IVORY", "value": "#f0ede8" },
+        { "name": "CAMEL", "value": "#ccbbaa" },
+        { "name": "SKY", "value": "#9bb0c9" }
+      ],
+      "rating": 4.4,
+      "reviewCount": 58,
+      "currency": "원"
+    },
+    {
+      "id": "7",
+      "name": "울트라 웜 다운코트",
+      "price": 149000,
+      "originalPrice": null,
+      "discountRate": 0,
+      "image": "/images/product7.png",
+      "imageAlt": "울트라 웜 다운코트",
+      "href": "/products/7",
+      "category": "아우터",
+      "isBest": true,
+      "isNew": false,
+      "colors": [
+        { "name": "BLACK", "value": "#1f1f1f" },
+        { "name": "WALNUT", "value": "#6b5a47" },
+        { "name": "IVORY", "value": "#f2ede6" }
+      ],
+      "rating": 4.9,
+      "reviewCount": 110,
+      "currency": "원"
+    },
+    {
+      "id": "8",
+      "name": "스웨트셔츠 A",
+      "price": 89000,
+      "originalPrice": null,
+      "discountRate": 0,
+      "image": "/images/product8.png",
+      "imageAlt": "스웨트셔츠 A",
+      "href": "/products/8",
+      "category": "상의",
+      "isBest": true,
+      "isNew": false,
+      "colors": [
+        { "name": "IVORY", "value": "#f6f1ea" },
+        { "name": "CLOUD", "value": "#c8d2dd" },
+        { "name": "CHARCOAL", "value": "#2f2f2f" }
+      ],
+      "rating": 4.3,
+      "reviewCount": 42,
+      "currency": "원"
+    },
+    {
+      "id": "9",
+      "name": "스웨트 와이드 팬츠",
+      "price": 109000,
+      "originalPrice": null,
+      "discountRate": 0,
+      "image": "/images/product9.png",
+      "imageAlt": "스웨트 와이드 팬츠",
+      "href": "/products/9",
+      "category": "하의",
+      "isBest": true,
+      "isNew": false,
+      "colors": [
+        { "name": "BLUE GREY", "value": "#9da6b3" },
+        { "name": "BLACK", "value": "#2b2b2b" },
+        { "name": "SAND", "value": "#e7dfd6" }
+      ],
+      "rating": 4.6,
+      "reviewCount": 71,
+      "currency": "원"
+    },
+    {
+      "id": "10",
+      "name": "드라이 스웨트 커브 팬츠",
+      "price": 49000,
+      "originalPrice": null,
+      "discountRate": 0,
+      "image": "/images/product10.png",
+      "imageAlt": "드라이 스웨트 커브 팬츠",
+      "href": "/products/10",
+      "category": "하의",
+      "isBest": true,
+      "isNew": false,
+      "colors": [
+        { "name": "IVORY", "value": "#ece3d8" },
+        { "name": "BLUE", "value": "#b0b7be" },
+        { "name": "BLACK", "value": "#1f1f1f" }
+      ],
+      "rating": 4.2,
+      "reviewCount": 38,
+      "currency": "원"
+    }
+  ],
+  "banners": [
+    {
+      "id": "1",
+      "title": "LITTLE SOFT MOMENTS",
+      "subtitle": "2026 NEW COLLECTION",
+      "description": "",
+      "image": "/images/banner1.png",
+      "imageUrl": "/images/banner1.png",
+      "imageAlt": "메인 배너 1",
+      "href": "/products"
+    },
+    {
+      "id": "2",
+      "title": "PLAY & GROW",
+      "subtitle": "SPRING SUMMER",
+      "description": "",
+      "image": "/images/banner2.png",
+      "imageUrl": "/images/banner2.png",
+      "imageAlt": "메인 배너 2",
+      "href": "/products"
+    },
+    {
+      "id": "3",
+      "title": "COZY EVERYDAY",
+      "subtitle": "BEST SELLERS",
+      "description": "",
+      "image": "/images/banner3.png",
+      "imageUrl": "/images/banner3.png",
+      "imageAlt": "메인 배너 3",
+      "href": "/best"
+    }
+  ],
+  "eventBanner": {
+    "image": "/images/eventbanner.png",
+    "imageAlt": "이벤트 배너",
+    "href": "/products"
+  }
+}

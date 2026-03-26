@@ -1,160 +1,105 @@
 <script setup>
 import mainData from '~/data/main.json'
+import mockData from '~/data/mock-products.json'
 
-// shop-info에서 SEO 정보 가져오기
-const { seoInfo, shopName } = useShopInfo()
-
-// SEO (API 우선, JSON fallback)
-useHead({ title: () => seoInfo.value?.title || shopName.value || mainData.seo.title })
+// SEO
+useHead({ title: mainData.seo.title })
 useSeoMeta({
-  title: () => seoInfo.value?.title || shopName.value || mainData.seo.title,
-  description: () => seoInfo.value?.description || '',
-  ogTitle: () => seoInfo.value?.title || shopName.value || mainData.seo.title,
-  ogDescription: () => seoInfo.value?.description || '',
-  ogImage: () => seoInfo.value?.ogImage || mainData.seo.ogImage
+  title: mainData.seo.title,
+  description: mainData.seo.description || '',
+  ogTitle: mainData.seo.title,
+  ogImage: mainData.seo.ogImage
 })
 
-// 메인 페이지 API 데이터
-const {
-  heroBanners,
-  slideBanners: apiSlideBanners,
-  halfBanners: apiHalfBanners,
-  fullBanners: apiFullBanners,
-  bannerPending,
-  pending: mainPending,
-  categories,
-  bestProducts: apiBestProducts,
-  recommendProducts: apiRecommendProducts
-} = useMain()
+// 목데이터 기반 (portfolio 방식)
+const allProducts = mockData.products
 
-// 배너 로딩 상태
-const showBannerLoading = computed(() => bannerPending.value)
+// New Arrival: id 1~5 (isNew 상품)
+const newArrivalProducts = allProducts.filter(p => p.isNew)
 
-// Hero 슬라이드 (API only)
-const heroSlides = computed(() => heroBanners.value || [])
+// Best Item: id 6~10 (isBest 상품)
+const bestProducts = allProducts.filter(p => p.isBest)
 
-// 카테고리 (API 또는 JSON 폴백)
-const categoryItems = computed(() =>
-  categories.value?.length ? categories.value : mainData.categories.items
-)
+// Special Offer: 할인율 있는 상품 (discountRate > 0)
+const specialOfferProducts = allProducts
+  .filter(p => p.discountRate > 0)
+  .map(p => ({
+    ...p,
+    originalPrice: p.price,
+    price: Math.round(p.price * (1 - p.discountRate / 100))
+  }))
 
-// Best 상품 (API 로딩 중이면 빈 배열, 완료 후 API 데이터 또는 JSON 폴백)
-const bestProducts = computed(() => {
-  if (mainPending.value) return []
-  return apiBestProducts.value?.length ? apiBestProducts.value : mainData.bestItems.products
-})
+// Hero 배너 (목데이터)
+const heroSlides = mockData.banners
 
-// 추천 상품 (API 로딩 중이면 빈 배열, 완료 후 API 데이터 또는 JSON 폴백)
-const mdPickProducts = computed(() => {
-  if (mainPending.value) return []
-  return apiRecommendProducts.value?.length ? apiRecommendProducts.value : mainData.mdPick.products
-})
+// Event 배너 (목데이터)
+const eventBanner = mockData.eventBanner
 
-// 카테고리별 상품 폴백 (API 실패 시)
-const fallbackCategoryProducts = computed(() => {
-  const combined = [...(apiBestProducts.value || []), ...(apiRecommendProducts.value || [])]
-  return combined.length ? combined : mainData.categoryItems.products
-})
-
-// 슬라이드 배너 (API only)
-const slideBanners = computed(() => apiSlideBanners.value || [])
-
-// Half 배너 (API only)
-const halfBanners = computed(() => apiHalfBanners.value || [])
-
-// Full 배너 (API only)
-const fullBanner = computed(() => apiFullBanners.value?.[0] || null)
-
-// 팝업
-const { centerPopups, floatingPopups, fetchPopups, dismissPopup } = usePopup()
+// Scroll reveal animation
+let observer
 
 onMounted(() => {
-  fetchPopups()
+  nextTick(() => {
+    const targets = document.querySelectorAll('.reveal')
+    observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          entry.target.classList.toggle('is-visible', entry.isIntersecting)
+        })
+      },
+      { threshold: 0.2 }
+    )
+    targets.forEach((target) => observer.observe(target))
+  })
+})
+
+onUnmounted(() => {
+  observer?.disconnect()
 })
 </script>
 
 <template>
   <div class="page-main">
-    <!-- Hero 배너 (클라이언트 전용 - 배너 API가 server: false) -->
-    <ClientOnly>
-      <div v-if="showBannerLoading" class="page-main__loading">
-        <BaseSpinner />
-      </div>
-      <div v-else class="page-main__hero-wrap">
-        <SectionHero
-          v-if="heroSlides.length"
-          :data="mainData.hero"
-          :slides="heroSlides"
-        />
-      </div>
-      <template #fallback>
-        <div class="page-main__loading">
-          <BaseSpinner />
-        </div>
-      </template>
-    </ClientOnly>
+    <!-- Hero 배너 (목데이터) -->
+    <div class="page-main__hero-wrap">
+      <SectionHero
+        :data="mainData.hero"
+        :slides="heroSlides"
+      />
+    </div>
 
     <main>
-        <SectionCategories
-          :data="mainData.categories"
-          :categories="categoryItems"
-        />
+      <!-- New Arrival 섹션 -->
+      <SectionBestItems
+        class="reveal"
+        :data="mainData.newArrival"
+        :products="newArrivalProducts"
+      />
 
-        <SectionBestItems
-          :data="mainData.bestItems"
-          :products="bestProducts"
-          :loading="mainPending"
-        />
+      <!-- Best Item 섹션 -->
+      <SectionBestItems
+        class="reveal"
+        :data="mainData.bestItems"
+        :products="bestProducts"
+      />
 
-        <SectionMdPick
-          :data="mainData.mdPick"
-          :products="mdPickProducts"
-          :loading="mainPending"
-        />
+      <!-- Special Offer 섹션 -->
+      <SectionBestItems
+        class="reveal"
+        :data="mainData.specialOffer"
+        :products="specialOfferProducts"
+      />
 
-        <!-- Full 배너 (클라이언트 전용) -->
-        <ClientOnly>
-          <BannerFull v-if="fullBanner" :banner="fullBanner" />
-        </ClientOnly>
-
-        <SectionCategoryItems
-          :data="mainData.categoryItems"
-          :categories="categories"
-          :fallback-products="fallbackCategoryProducts"
-        />
-
-        <!-- Slide 배너 (클라이언트 전용) -->
-        <ClientOnly>
-          <BannerSlide
-            v-if="slideBanners.length"
-            :banners="slideBanners"
-            :auto-play="true"
-            :interval="5000"
+      <!-- Event 배너 (목데이터) -->
+      <section class="event-banner reveal">
+        <NuxtLink :to="eventBanner.href" class="event-banner__frame">
+          <img
+            :src="eventBanner.image"
+            :alt="eventBanner.imageAlt"
+            class="event-banner__image"
           />
-        </ClientOnly>
-
-        <!-- Half 배너 (클라이언트 전용) -->
-        <ClientOnly>
-          <SectionHalfBanners
-            v-if="halfBanners.length"
-            :banners="halfBanners"
-            :button-label="mainData.banners.halfLabels.buttonLabel"
-          />
-        </ClientOnly>
-
-        <!-- <SectionInstagram
-          :data="mainData.instagram"
-          :images="mainData.instagram.items"
-        /> -->
-      </main>
-
-    <PopupCenter
-      :popups="centerPopups"
-      @dismiss="dismissPopup"
-    />
-    <PopupFloating
-      :popups="floatingPopups"
-      @dismiss="dismissPopup"
-    />
+        </NuxtLink>
+      </section>
+    </main>
   </div>
 </template>

@@ -50,12 +50,14 @@
   }
 
   &__title {
-    font-size: $Headline-headline-1-Font-size;
+    font-family: 'Playfair Display', 'Pretendard Variable', Pretendard, sans-serif;
+    font-size: 48px;
+    font-weight: 700;
     margin: 0;
     color: $Text-Primary-text-color;
 
     @include mobile {
-      @include typo-title-3;
+      font-size: 32px;
     }
   }
 }

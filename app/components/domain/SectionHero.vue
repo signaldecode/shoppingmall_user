@@ -154,28 +154,48 @@ onUnmounted(() => {
         </component>
       </div>
     </div>
-    <div class="section-hero__content">
+    <!-- Portfolio 스타일 오버레이: 왼쪽 정렬 + 그라디언트 -->
+    <div class="section-hero__overlay">
       <p v-if="activeSlide.subtitle" class="section-hero__subtitle">{{ activeSlide.subtitle }}</p>
-      <!-- <h1 v-if="activeSlide.title" class="section-hero__title">{{ activeSlide.title }}</h1> -->
+      <h1 v-if="activeSlide.title" class="section-hero__title">{{ activeSlide.title }}</h1>
       <p v-if="activeSlide.description" class="section-hero__description">{{ activeSlide.description }}</p>
-      <SlideIndicator
-        v-if="totalSlides > 1"
-        :current="displayIndex"
-        :total="totalSlides"
-      />
+      <NuxtLink
+        v-if="activeSlide.href || activeSlide.linkUrl"
+        :to="activeSlide.href || activeSlide.linkUrl"
+        class="section-hero__cta"
+      >
+        SHOP NOW
+      </NuxtLink>
     </div>
+
+    <!-- 화살표 -->
     <div v-if="totalSlides > 1" class="section-hero__arrows">
-      <IconSlideButton
-        direction="prev"
-        class="slide-button--hero"
+      <button
+        type="button"
+        class="section-hero__arrow section-hero__arrow--left"
         :aria-label="arrowLabels.prev"
         @click="prevSlide"
-      />
-      <IconSlideButton
-        direction="next"
-        class="slide-button--hero"
+      >
+        ‹
+      </button>
+      <button
+        type="button"
+        class="section-hero__arrow section-hero__arrow--right"
         :aria-label="arrowLabels.next"
         @click="nextSlide"
+      >
+        ›
+      </button>
+    </div>
+
+    <!-- 도트 인디케이터 (portfolio 스타일) -->
+    <div v-if="totalSlides > 1" class="section-hero__dots">
+      <span
+        v-for="i in totalSlides"
+        :key="i"
+        class="section-hero__dot"
+        :class="{ 'section-hero__dot--active': displayIndex === i }"
+        @click="goToSlide(i - 1)"
       />
     </div>
   </section>

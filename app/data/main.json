@@ -85,9 +85,19 @@
       { "label": "클렌징", "href": "/category?tab=cleansing", "image": "/images/categories/category-3.png", "imageAlt": "클렌징 카테고리" }
     ]
   },
+  "newArrival": {
+    "title": "New Arrival",
+    "subtitle": "새 시즌 신상품을 먼저 만나보세요.",
+    "viewAllLabel": "전체보기",
+    "viewAllHref": "/products",
+    "arrowLabels": {
+      "prev": "이전 상품",
+      "next": "다음 상품"
+    }
+  },
   "bestItems": {
     "title": "Best Item",
-    "subtitle": "가장 사랑받는 인기 제품",
+    "subtitle": "가장 많은 사랑을 받은 베스트 아이템이에요.",
     "viewAllLabel": "전체보기",
     "viewAllHref": "/best",
     "arrowLabels": {
@@ -95,33 +105,15 @@
       "next": "다음 상품"
     }
   },
-  "mdPick": {
-    "title": "MD's Pick",
-    "subtitle": "MD가 추천하는 제품",
-    "brandName": "",
-    "recommendTitle": "MD 추천 아이템",
-    "mainImage": "/images/banners/md.png",
-    "mainImageAlt": "MD 추천 메인 이미지",
+  "specialOffer": {
+    "title": "Special Offer",
+    "subtitle": "지금 바로 할인 중인 인기 상품을 담았어요.",
+    "viewAllLabel": "전체보기",
+    "viewAllHref": "/products",
     "arrowLabels": {
       "prev": "이전 상품",
       "next": "다음 상품"
     }
-  },
-  "categoryItems": {
-    "title": "Category Item",
-    "subtitle": "카테고리별 추천 제품",
-    "tabsAriaLabel": "카테고리 탭",
-    "tabs": [
-      { "label": "스킨케어", "value": "skincare" },
-      { "label": "메이크업", "value": "makeup" },
-      { "label": "앰플·세럼", "value": "ampoule" },
-      { "label": "클렌징", "value": "cleansing" }
-    ],
-    "arrowLabels": {
-      "prev": "이전 상품",
-      "next": "다음 상품"
-    },
-    "emptyMessage": "리스트가 비었습니다."
   },
   "slideBanner": {
     "prevLabel": "이전 슬라이드",

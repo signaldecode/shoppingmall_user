@@ -10,28 +10,30 @@ $Green-Primary-green-300: #9DDB87FF;
 $Green-Primary-green-200: #BAE6AAFF;
 $Green-Primary-green-100: #D5F0CBFF;
 $Green-Primary-green-50: #EBF9E6FF;
-$Black-Primary-black-900: #222222FF;
-$Black-Primary-black-800: #505050FF;
-$Black-Primary-black-700: #727272FF;
-$Black-Primary-black-600: #767676FF;
-$Black-Primary-black-500: #999999FF;
-$Black-Primary-black-400: #BEBEBEFF;
-$Black-Primary-black-300: #E5E5ECFF;
-$Black-Primary-black-200: #F1F1F5FF;
-$Black-Primary-black-100: #F7F7FBFF;
-$Black-Primary-black-50: #F3F3F3FF;
 
-/* Brown Palette */
-$Brown-50: #EFEBE9;
-$Brown-100: #D7CCC8;
-$Brown-200: #BCAAA4;
-$Brown-300: #A1887F;
-$Brown-400: #8D6E63;
-$Brown-500: #795548;
-$Brown-600: #6D4C41;
-$Brown-700: #5D4037;
-$Brown-800: #4E342E;
-$Brown-900: #3E2723;
+/* Warm Neutral - portfolio 디자인 기반 */
+$Black-Primary-black-900: #3F3A35FF;
+$Black-Primary-black-800: #5F5C58FF;
+$Black-Primary-black-700: #7A7067FF;
+$Black-Primary-black-600: #8A8177FF;
+$Black-Primary-black-500: #9A9087FF;
+$Black-Primary-black-400: #B4A79AFF;
+$Black-Primary-black-300: #E7DFD6FF;
+$Black-Primary-black-200: #F4EFEAFF;
+$Black-Primary-black-100: #F7F2ECFF;
+$Black-Primary-black-50: #F5EFE8FF;
+
+/* Brown Palette - portfolio 디자인 기반 */
+$Brown-50: #F7F2EC;
+$Brown-100: #F4EFEA;
+$Brown-200: #E7DFD6;
+$Brown-300: #D6CDC3;
+$Brown-400: #B4A79A;
+$Brown-500: #9A9087;
+$Brown-600: #8A8177;
+$Brown-700: #6F675E;
+$Brown-800: #6B5A47;
+$Brown-900: #5A4633;
 
 /* Gray Palette */
 $Gray-200: #EEEEEE;
@@ -55,23 +57,23 @@ $Blue-700: #303F9F;
 $Blue-800: #283593;
 $Blue-900: #1A237E;
 
-// 테마 CSS 변수 (동적 테마용)
+// 테마 CSS 변수 (동적 테마용) - 기본 테마: brown (portfolio 디자인)
 :root {
-  --theme-primary-50: #{$Green-Primary-green-50};
-  --theme-primary-100: #{$Green-Primary-green-100};
-  --theme-primary-200: #{$Green-Primary-green-200};
-  --theme-primary-300: #{$Green-Primary-green-300};
-  --theme-primary-400: #{$Green-Primary-green-400};
-  --theme-primary-500: #{$Green-Primary-green-500};
-  --theme-primary-600: #{$Green-Primary-green-600};
-  --theme-primary-700: #{$Green-Primary-green-700};
-  --theme-primary-800: #{$Green-Primary-green-800};
-  --theme-primary-900: #{$Green-Primary-green-900};
-  --theme-primary: #{$Green-Primary-green-800};
-  --theme-primary-light: #{$Green-Primary-green-100};
-  --theme-primary-dark: #{$Green-Primary-green-900};
+  --theme-primary-50: #{$Brown-50};
+  --theme-primary-100: #{$Brown-100};
+  --theme-primary-200: #{$Brown-200};
+  --theme-primary-300: #{$Brown-300};
+  --theme-primary-400: #{$Brown-400};
+  --theme-primary-500: #{$Brown-500};
+  --theme-primary-600: #{$Brown-600};
+  --theme-primary-700: #{$Brown-700};
+  --theme-primary-800: #{$Brown-800};
+  --theme-primary-900: #{$Brown-900};
+  --theme-primary: #{$Brown-800};
+  --theme-primary-light: #{$Brown-100};
+  --theme-primary-dark: #{$Brown-900};
   // opacity variants
-  --theme-primary-rgb: 12, 111, 35;
+  --theme-primary-rgb: 107, 90, 71;
 }
 
 // Primary 컬러 - CSS 변수 사용 (동적 테마 적용)
@@ -80,7 +82,7 @@ $Primary-color-light: var(--theme-primary-light);
 $Primary-color-dark: var(--theme-primary-dark);
 
 // SCSS 함수용 fallback (rgba 등에서 사용)
-$Primary-color-raw: $Green-Primary-green-800;
+$Primary-color-raw: $Brown-800;
 $Primary-white-color: #FFFFFFFF;
 $Primary-white-color-op70: #FFFFFF99;
 $Primary-black-color-op3: #00000008;
