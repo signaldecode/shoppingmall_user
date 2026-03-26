@@ -153,7 +153,7 @@
       color: $Primary-white-color;
 
       &:hover:not(:disabled) {
-        background: var(--theme-primary-900);
+        background: $Primary-color-dark;
       }
     }
   }
@@ -181,7 +181,7 @@
       color: $Primary-color;
 
       &:hover:not(:disabled) {
-        color: var(--theme-primary-900);
+        color: $Primary-color-dark;
       }
     }
 

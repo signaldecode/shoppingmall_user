@@ -167,7 +167,7 @@
 
   &__progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, $Primary-color 0%, rgba(var(--theme-primary-rgb), 0.3) 100%);
+    background: linear-gradient(90deg, $Primary-color 0%, rgba($Primary-color, 0.3) 100%);
     border-radius: 9999px;
     transition: width 0.3s ease;
   }
@@ -310,7 +310,7 @@
     }
 
     &--active {
-      box-shadow: 0 0 0 3px rgba(var(--theme-primary-rgb), 0.3);
+      box-shadow: 0 0 0 3px rgba($Primary-color, 0.3);
     }
   }
 

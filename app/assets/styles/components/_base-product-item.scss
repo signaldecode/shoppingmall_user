@@ -118,7 +118,7 @@
     transition: border-color 0.2s, background-color 0.2s;
 
     &:hover {
-      background: var(--theme-primary-100);
+      background: $Primary-color-100;
       color: $Primary-color;
     }
 

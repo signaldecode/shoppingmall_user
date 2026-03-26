@@ -98,7 +98,7 @@
 
     &:hover {
       color: $Primary-color;
-      background: var(--theme-primary-50);
+      background: $Primary-color-50;
     }
 
     &:focus-visible {
@@ -111,7 +111,7 @@
       background: $Primary-color;
 
       &:hover {
-        background: var(--theme-primary-900);
+        background: $Primary-color-dark;
         color: $Primary-white-color;
       }
     }

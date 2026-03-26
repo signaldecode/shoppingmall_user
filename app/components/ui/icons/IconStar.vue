@@ -34,7 +34,7 @@ const label = computed(() =>
   isActive.value ? iconsData.star.label.active : iconsData.star.label.disabled
 )
 
-const fillColor = computed(() => isActive.value ? 'var(--icon-color-primary, var(--theme-primary))' : 'var(--icon-color-disabled, #e5e5ec)')
+const fillColor = computed(() => isActive.value ? 'var(--icon-color-primary, #6B5A47)' : 'var(--icon-color-disabled, #e5e5ec)')
 </script>
 
 <template>

@@ -45,44 +45,13 @@ $Gray-700: #616161;
 $Gray-800: #424242;
 $Gray-900: #212121;
 
-/* Blue Palette */
-$Blue-50: #E8EAF6;
-$Blue-100: #C5CAE9;
-$Blue-200: #9FA8DA;
-$Blue-300: #7986CB;
-$Blue-400: #5C6BC0;
-$Blue-500: #3F51B5;
-$Blue-600: #3949AB;
-$Blue-700: #303F9F;
-$Blue-800: #283593;
-$Blue-900: #1A237E;
-
-// 테마 CSS 변수 (동적 테마용) - 기본 테마: brown (portfolio 디자인)
-:root {
-  --theme-primary-50: #{$Brown-50};
-  --theme-primary-100: #{$Brown-100};
-  --theme-primary-200: #{$Brown-200};
-  --theme-primary-300: #{$Brown-300};
-  --theme-primary-400: #{$Brown-400};
-  --theme-primary-500: #{$Brown-500};
-  --theme-primary-600: #{$Brown-600};
-  --theme-primary-700: #{$Brown-700};
-  --theme-primary-800: #{$Brown-800};
-  --theme-primary-900: #{$Brown-900};
-  --theme-primary: #{$Brown-800};
-  --theme-primary-light: #{$Brown-100};
-  --theme-primary-dark: #{$Brown-900};
-  // opacity variants
-  --theme-primary-rgb: 107, 90, 71;
-}
-
-// Primary 컬러 - CSS 변수 사용 (동적 테마 적용)
-$Primary-color: var(--theme-primary);
-$Primary-color-light: var(--theme-primary-light);
-$Primary-color-dark: var(--theme-primary-dark);
-
-// SCSS 함수용 fallback (rgba 등에서 사용)
-$Primary-color-raw: $Brown-800;
+// Primary 컬러 (정적 토큰 - Brown 기반)
+$Primary-color: $Brown-800;
+$Primary-color-light: $Brown-100;
+$Primary-color-dark: $Brown-900;
+$Primary-color-50: $Brown-50;
+$Primary-color-100: $Brown-100;
+$Primary-color-900: $Brown-900;
 $Primary-white-color: #FFFFFFFF;
 $Primary-white-color-op70: #FFFFFF99;
 $Primary-black-color-op3: #00000008;

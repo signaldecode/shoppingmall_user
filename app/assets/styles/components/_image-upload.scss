@@ -35,7 +35,7 @@
 
     &:hover:not(:disabled) {
       border-color: $Primary-color;
-      background: rgba(var(--theme-primary-rgb), 0.05);
+      background: rgba($Primary-color, 0.05);
       color: $Primary-color;
     }
 

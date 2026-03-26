@@ -233,7 +233,7 @@
 
   &:hover {
     border-color: $Primary-color;
-    background: var(--theme-primary-50);
+    background: $Primary-color-50;
 
     .support-link__icon {
       background: $Primary-color;

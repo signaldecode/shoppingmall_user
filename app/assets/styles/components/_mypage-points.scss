@@ -219,7 +219,7 @@
     font-weight: 500;
 
     &--earned {
-      background: rgba(var(--theme-primary-rgb), 0.1);
+      background: rgba($Primary-color, 0.1);
       color: $Primary-color;
     }
 

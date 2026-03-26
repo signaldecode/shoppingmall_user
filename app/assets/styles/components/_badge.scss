@@ -72,8 +72,8 @@
   }
 
   &--variant-best {
-    background: var(--theme-primary-100);
-    color: var(--theme-primary-900);
+    background: $Primary-color-100;
+    color: $Primary-color-900;
   }
 
   &--variant-best-dark {
@@ -97,8 +97,8 @@
   }
 
   &--variant-success {
-    background: var(--theme-primary-100);
-    color: var(--theme-primary-900);
+    background: $Primary-color-100;
+    color: $Primary-color-900;
   }
 
   &--variant-default {

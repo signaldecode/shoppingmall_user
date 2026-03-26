@@ -900,7 +900,7 @@
   &__dist-track {
     width: 16px;
     height: 74px;
-    background: var(--theme-primary-50);
+    background: $Primary-color-50;
     border-radius: 4px;
     overflow: hidden;
     display: flex;
@@ -1310,8 +1310,8 @@
   }
 
   &__answer {
-    background: var(--theme-primary-50);
-    // border: 1px solid var(--theme-primary-200);
+    background: $Primary-color-50;
+    // border: 1px solid $Brown-200;
   }
 
   &__no-answer {
