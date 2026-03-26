@@ -102,6 +102,37 @@ export const useQnas = () => {
     return typeMap[type] || type || '문의'
   }
 
+  /**
+   * Q&A 작성
+   * POST /qnas
+   * @param {Object} payload
+   * @param {number} [payload.productId] - 상품 ID (상품 문의 시)
+   * @param {string} payload.qnaType - PRODUCT | ORDER | GENERAL | SHIPPING | PAYMENT | MEMBERSHIP
+   * @param {string} payload.title - 제목
+   * @param {string} payload.question - 문의 내용
+   * @param {boolean} [payload.isSecret] - 비밀글 여부
+   */
+  const createQna = async (payload) => {
+    const { post } = useApi()
+    pending.value = true
+    error.value = null
+
+    try {
+      const response = await post('/qnas', payload)
+      return { success: true, data: response.data || response }
+    } catch (err) {
+      console.error('Failed to create Q&A:', err)
+      const errorMessage = err.data?.error?.message
+        || err.data?.message
+        || err.message
+        || 'Q&A 작성에 실패했습니다.'
+      error.value = errorMessage
+      return { success: false, error: errorMessage }
+    } finally {
+      pending.value = false
+    }
+  }
+
   return {
     qnas,
     totalCount,
@@ -109,6 +140,7 @@ export const useQnas = () => {
     pending,
     error,
     fetchQnas,
+    createQna,
     getQnaTypeName
   }
 }

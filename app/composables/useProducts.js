@@ -3,8 +3,7 @@
  * GET /products - 상품 리스트 조회
  */
 export const useProducts = (initialOptions = {}) => {
-  const config = useRuntimeConfig()
-  const baseUrl = config.public.apiBase
+  const { get } = useApi()
 
   // 기본 옵션
   const defaultOptions = {
@@ -33,21 +32,18 @@ export const useProducts = (initialOptions = {}) => {
   const fetchProducts = async () => {
     const requestId = ++currentRequestId
 
-    const query = new URLSearchParams()
-    if (params.categoryId) query.set('categoryId', params.categoryId)
-    if (params.tag) query.set('tag', params.tag)
-    if (params.page !== undefined) query.set('page', params.page)
-    if (params.size) query.set('size', params.size)
-    if (params.sort) query.set('sort', params.sort)
-
-    const queryString = query.toString()
-    const url = `${baseUrl}/products${queryString ? '?' + queryString : ''}`
+    const query = {}
+    if (params.categoryId) query.categoryId = params.categoryId
+    if (params.tag) query.tag = params.tag
+    if (params.page !== undefined) query.page = params.page
+    if (params.size) query.size = params.size
+    if (params.sort) query.sort = params.sort
 
     pending.value = true
     error.value = null
 
     try {
-      const data = await $fetch(url)
+      const data = await get('/products', query)
       // 최신 요청만 반영 (이전 요청 응답 무시)
       if (requestId === currentRequestId) {
         response.value = data

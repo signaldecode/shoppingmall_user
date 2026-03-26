@@ -98,12 +98,59 @@ export const useReviews = () => {
     }
   }
 
+  /**
+   * 리뷰 작성
+   * POST /products/{productId}/reviews (multipart/form-data)
+   * @param {number} productId - 상품 ID
+   * @param {Object} reviewData - { rating, title, content }
+   * @param {Array} imageFiles - 이미지 파일 배열
+   */
+  const createReview = async (productId, reviewData, imageFiles = []) => {
+    const { apiFetch } = useApi()
+    pending.value = true
+    error.value = null
+
+    try {
+      const formData = new FormData()
+
+      const reviewPayload = {
+        rating: reviewData.rating,
+        title: reviewData.title || null,
+        content: reviewData.content
+      }
+      formData.append('review', new Blob([JSON.stringify(reviewPayload)], { type: 'application/json' }))
+
+      imageFiles.forEach((file) => {
+        const f = file instanceof File ? file : file.file
+        if (f) formData.append('images', f)
+      })
+
+      const response = await apiFetch(`/products/${productId}/reviews`, {
+        method: 'POST',
+        body: formData
+      })
+
+      return { success: true, data: response.data || response }
+    } catch (err) {
+      console.error('Failed to create review:', err)
+      const errorMessage = err.data?.error?.message
+        || err.data?.message
+        || err.message
+        || '리뷰 작성에 실패했습니다.'
+      error.value = errorMessage
+      return { success: false, error: errorMessage }
+    } finally {
+      pending.value = false
+    }
+  }
+
   return {
     reviews,
     totalCount,
     totalPages,
     pending,
     error,
-    fetchReviews
+    fetchReviews,
+    createReview
   }
 }

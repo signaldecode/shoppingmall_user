@@ -504,6 +504,28 @@ export const useOrder = () => {
     }
   }
 
+  /**
+   * 배송 확인 (구매 확정)
+   * PATCH /api/v1/orders/{orderId}/confirm
+   * @param {number|string} orderId - 주문 ID
+   */
+  const confirmDelivery = async (orderId) => {
+    pending.value = true
+    error.value = null
+
+    try {
+      const { patch } = useApi()
+      const response = await patch(`/orders/${orderId}/confirm`)
+      return response.data || response
+    } catch (err) {
+      console.error('Failed to confirm delivery:', err)
+      error.value = err.data?.message || err.message || '구매 확정에 실패했습니다.'
+      throw err
+    } finally {
+      pending.value = false
+    }
+  }
+
   return {
     // 상태
     pending,
@@ -517,6 +539,7 @@ export const useOrder = () => {
     guestOrderLookup,
     cancelOrder,
     cancelGuestOrder,
+    confirmDelivery,
     transformOrderList,
     transformClaimList,
     transformOrderDetail,
