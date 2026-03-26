@@ -305,7 +305,7 @@ defineExpose({
               label: `${opt.label}`,
               value: opt
             }))"
-            :placeholder="`${optionGroup.name} 선택`"
+            :placeholder="`${optionGroup.name} ${labels.optionSelectSuffix || '선택'}`"
             variant="box"
           />
         </div>

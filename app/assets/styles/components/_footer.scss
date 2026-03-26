@@ -9,23 +9,23 @@
 
 .footer {
   background: $Brown-800;
-  color: #f4f4f4;
+  color: $Primary-white-color;
   margin-top: $padding-section;
 
   &__inner {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 84px 24px;
+    padding: $padding-section $padding-6;
 
     @include mobile {
-      padding: 48px 20px;
+      padding: $padding-10 $padding-5;
     }
   }
 
   &__top {
     display: flex;
     justify-content: space-between;
-    gap: 24px;
+    gap: $padding-6;
 
     @include mobile {
       flex-direction: column;
@@ -40,44 +40,43 @@
 
   // 로고
   &__logo {
-    margin-bottom: 12px;
+    margin-bottom: $padding-3;
   }
 
   &__logo-image {
-    height: 24px;
+    height: $padding-6;
     width: auto;
     object-fit: contain;
   }
 
   &__logo-text {
-    font-size: 32px;
-    font-weight: 700;
-    color: #f4f4f4;
+    @include typo-headline-2;
+    color: $Primary-white-color;
     line-height: 1.2;
   }
 
   // 네비게이션
   &__nav {
-    margin-bottom: 16px;
+    margin-bottom: $padding-4;
 
     @include mobile {
-      margin-bottom: 12px;
+      margin-bottom: $padding-3;
     }
   }
 
   &__nav-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 14px;
+    gap: $padding-3;
     list-style: none;
     margin: 0;
     padding: 0;
   }
 
   &__nav-link {
-    color: #f4f4f4;
+    color: $Primary-white-color;
     text-decoration: none;
-    font-size: 15px;
+    @include typo-body-2;
     transition: opacity 0.2s ease;
 
     &:hover {
@@ -85,7 +84,7 @@
     }
 
     @include mobile {
-      font-size: 13px;
+      @include typo-body-4;
     }
   }
 
@@ -93,13 +92,13 @@
   &__info {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: $padding-1;
   }
 
   &__info-line {
-    margin: 4px 0;
-    font-size: 13px;
-    color: #bdbdbd;
+    margin: $padding-1 0;
+    @include typo-body-4;
+    color: $Gray-400;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -107,13 +106,13 @@
     span {
       &:not(:last-child)::after {
         content: '|';
-        margin: 0 8px;
-        color: #8a8a8a;
+        margin: 0 $padding-2;
+        color: $Gray-600;
       }
     }
 
     @include mobile {
-      font-size: 12px;
+      @include typo-body-5;
       flex-direction: column;
       align-items: flex-start;
       gap: 2px;
@@ -132,8 +131,8 @@
         span:not(:last-child)::after {
           display: inline;
           content: '|';
-          margin: 0 6px;
-          color: #8a8a8a;
+          margin: 0 $gap-xs;
+          color: $Gray-600;
         }
       }
     }
@@ -143,17 +142,17 @@
   &__info-toggle {
     display: none;
     align-items: center;
-    gap: 4px;
+    gap: $padding-1;
     background: transparent;
     border: none;
     cursor: pointer;
-    font-size: 13px;
-    color: #bdbdbd;
+    @include typo-body-4;
+    color: $Gray-400;
     padding: 0;
-    margin-top: 4px;
+    margin-top: $padding-1;
 
     .base-icon {
-      color: #bdbdbd;
+      color: $Gray-400;
       transition: transform 0.3s ease;
     }
 
@@ -163,14 +162,14 @@
 
     @include mobile {
       display: inline-flex;
-      font-size: 12px;
+      @include typo-body-5;
     }
   }
 
   &__info-detail {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: $padding-1;
 
     @include mobile {
       overflow: hidden;
@@ -182,18 +181,18 @@
       &--open {
         max-height: 200px;
         opacity: 1;
-        margin-top: 4px;
+        margin-top: $padding-1;
       }
     }
   }
 
   &__phone-link {
-    color: #bdbdbd;
+    color: $Gray-400;
     text-decoration: none;
     transition: color 0.2s ease;
 
     &:hover {
-      color: #f4f4f4;
+      color: $Primary-white-color;
     }
   }
 
@@ -201,7 +200,7 @@
   &__social {
     display: flex;
     align-items: flex-start;
-    gap: 12px;
+    gap: $padding-3;
     flex-shrink: 0;
 
     @include mobile {
@@ -213,20 +212,20 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
+    width: $padding-9;
+    height: $padding-9;
     border-radius: 50%;
-    background: #7c7268;
-    color: #fff;
+    background: $Brown-700;
+    color: $Primary-white-color;
     transition: background 0.2s ease;
 
     &:hover {
-      background: #998d82;
+      background: $Brown-600;
     }
 
     .icon-social {
-      width: 18px;
-      height: 18px;
+      width: $padding-4;
+      height: $padding-4;
 
       svg {
         width: 100%;
@@ -237,13 +236,13 @@
 
   // 저작권
   &__copyright {
-    margin: 18px 0 0;
-    font-size: 14px;
-    color: #8a8a8a;
+    margin: $padding-4 0 0;
+    @include typo-body-3;
+    color: $Gray-600;
 
     @include mobile {
-      font-size: 12px;
-      margin-top: 14px;
+      @include typo-body-5;
+      margin-top: $padding-3;
     }
   }
 }
@@ -254,9 +253,9 @@
   align-items: center;
   justify-content: center;
 
-  &--sm { width: 16px; height: 16px; }
-  &--md { width: 20px; height: 20px; }
-  &--lg { width: 24px; height: 24px; }
+  &--sm { width: $padding-4; height: $padding-4; }
+  &--md { width: $padding-5; height: $padding-5; }
+  &--lg { width: $padding-6; height: $padding-6; }
 
   svg {
     width: 100%;

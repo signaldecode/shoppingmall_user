@@ -30,7 +30,9 @@
     "downloadSuccess": "쿠폰이 다운로드되었습니다.",
     "downloadError": "쿠폰 다운로드에 실패했습니다.",
     "alreadyDownloaded": "이미 다운로드한 쿠폰입니다.",
-    "loginRequired": "로그인이 필요합니다."
+    "loginRequired": "로그인이 필요합니다.",
+    "downloadAllSuccess": "개의 쿠폰이 다운로드되었습니다.",
+    "downloadAllFailed": "개의 쿠폰 다운로드에 실패했습니다."
   },
   "empty": {
     "title": "현재 받을 수 있는 쿠폰이 없어요.",

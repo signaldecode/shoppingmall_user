@@ -26,9 +26,11 @@ onMounted(() => {
 })
 
 // SEO
-useHead({ title: computed(() => promotion.value?.name || '프로모션') })
+import promoData from '~/data/promotions.json'
+
+useHead({ title: computed(() => promotion.value?.name || promoData.seo.fallbackTitle) })
 useSeoMeta({
-  title: computed(() => promotion.value?.name || '프로모션'),
+  title: computed(() => promotion.value?.name || promoData.seo.fallbackTitle),
   description: computed(() => promotion.value?.description || '')
 })
 </script>
@@ -44,8 +46,8 @@ useSeoMeta({
 
         <!-- 에러 -->
         <div v-else-if="error" class="promotion-page__error">
-          <p>프로모션 정보를 불러올 수 없습니다.</p>
-          <BaseButton label="메인으로" href="/" variant="primary" />
+          <p>{{ promoData.error.message }}</p>
+          <BaseButton :label="promoData.error.homeButton" href="/" variant="primary" />
         </div>
 
         <!-- 프로모션 상세 -->

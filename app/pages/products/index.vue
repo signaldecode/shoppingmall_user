@@ -1,10 +1,11 @@
 <script setup>
+import productsPageData from '~/data/products.json'
 import mockData from '~/data/mock-products.json'
 
-useHead({ title: 'All Items' })
+useHead({ title: productsPageData.seo.title })
 useSeoMeta({
-  title: 'All Items',
-  description: '모든 상품을 한눈에 확인하세요.'
+  title: productsPageData.seo.title,
+  description: productsPageData.seo.description
 })
 
 // 목데이터 기반 (portfolio 방식)
@@ -31,22 +32,17 @@ const sortedProducts = computed(() => {
   <div class="page-products">
     <main class="products-page">
       <div class="products-page__header">
-        <h1 class="products-page__title">All Items</h1>
-        <p class="products-page__subtitle">모든 상품을 한눈에 확인하세요.</p>
+        <h1 class="products-page__title">{{ productsPageData.page.title }}</h1>
+        <p class="products-page__subtitle">{{ productsPageData.page.subtitle }}</p>
       </div>
 
       <div class="products-page__toolbar">
         <span class="products-page__count">
-          총 <strong>{{ sortedProducts.length }}개</strong> 상품
+          {{ productsPageData.count.prefix }}<strong>{{ sortedProducts.length }}{{ productsPageData.count.suffix }}</strong>{{ productsPageData.count.label }}
         </span>
         <BaseSelect
           v-model="sortValue"
-          :options="[
-            { label: '최신순', value: 'latest' },
-            { label: '인기순', value: 'popular' },
-            { label: '낮은 가격순', value: 'price_asc' },
-            { label: '높은 가격순', value: 'price_desc' }
-          ]"
+          :options="productsPageData.sort.options"
           size="small"
         />
       </div>

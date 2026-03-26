@@ -131,8 +131,8 @@
       "gender": {
         "label": "성별",
         "options": [
-          { "label": "남자", "value": "male" },
-          { "label": "여자", "value": "female" }
+          { "label": "남성", "value": "MALE" },
+          { "label": "여성", "value": "FEMALE" }
         ]
       },
       "birth": {
@@ -179,7 +179,16 @@
       "codeVerified": "인증번호 확인이 완료되었습니다.",
       "codeVerifyFailed": "확인에 실패했습니다.",
       "emailNotVerified": "이메일 인증을 완료해주세요.",
-      "zipPreparing": "우편번호 찾기는 준비 중입니다."
+      "zipPreparing": "우편번호 찾기는 준비 중입니다.",
+      "passwordRequired": "비밀번호를 입력해주세요.",
+      "passwordInvalid": "비밀번호는 8자 이상, 영문과 숫자를 포함해야 합니다.",
+      "passwordMismatch": "비밀번호가 일치하지 않습니다.",
+      "nameRequired": "이름을 입력해주세요.",
+      "nameInvalid": "이름은 2~20자의 한글 또는 영문이어야 합니다.",
+      "phoneRequired": "휴대폰 번호를 입력해주세요.",
+      "phoneMidInvalid": "중간번호는 3~4자리 숫자여야 합니다.",
+      "phoneLastInvalid": "끝번호는 4자리 숫자여야 합니다.",
+      "signupFailed": "회원가입에 실패했습니다."
     },
     "socialExist": {
       "modalTitle": "소셜 계정 안내",

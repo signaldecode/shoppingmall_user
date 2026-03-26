@@ -1,0 +1,9 @@
+{
+  "seo": {
+    "fallbackTitle": "프로모션"
+  },
+  "error": {
+    "message": "프로모션 정보를 불러올 수 없습니다.",
+    "homeButton": "메인으로"
+  }
+}

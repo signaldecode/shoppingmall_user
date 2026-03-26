@@ -11,7 +11,7 @@
   &__link {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: $padding-2;
     text-decoration: none;
     color: inherit;
   }
@@ -22,11 +22,11 @@
     width: 100%;
     aspect-ratio: 3 / 4;
     overflow: hidden;
-    border-radius: 8px;
-    background: #f4efea;
+    border-radius: $padding-2;
+    background: $Brown-100;
 
     @include mobile {
-      border-radius: 6px;
+      border-radius: $gap-xs;
     }
   }
 
@@ -44,21 +44,20 @@
   // 컬러 도트
   &__colors {
     display: flex;
-    gap: 6px;
+    gap: $gap-xs;
   }
 
   &__color-dot {
-    width: 15px;
-    height: 15px;
+    width: $size-color-dot;
+    height: $size-color-dot;
     border-radius: 50%;
-    border: 1px solid #ddd3c9;
+    border: 1px solid $Brown-300;
   }
 
   // 상품명
   &__name {
     margin: 0;
-    font-size: 16px;
-    font-weight: 500;
+    @include typo-title-5;
     color: $Text-Primary-text-color;
     display: -webkit-box;
     -webkit-line-clamp: 1;
@@ -66,7 +65,7 @@
     overflow: hidden;
 
     @include mobile {
-      font-size: 14px;
+      @include typo-title-6;
     }
   }
 
@@ -74,29 +73,29 @@
   &__price-row {
     display: flex;
     align-items: baseline;
-    gap: 6px;
-    font-size: 13px;
+    gap: $gap-xs;
+    @include typo-body-4;
   }
 
   &__discount {
-    color: #d6584b;
-    font-weight: 700;
-    font-size: 14px;
+    color: $Error-color;
+    font-weight: get-weight('Bold');
+    @include typo-title-6;
   }
 
   &__original-price {
     color: $Brown-400;
     text-decoration: line-through;
-    font-size: 15px;
+    @include typo-body-2;
   }
 
   &__price {
     color: $Brown-800;
-    font-weight: 600;
-    font-size: 15px;
+    font-weight: get-weight('SemiBold');
+    @include typo-body-2;
 
     @include mobile {
-      font-size: 14px;
+      @include typo-title-6;
     }
   }
 
@@ -104,14 +103,14 @@
   &__rating {
     display: flex;
     align-items: center;
-    gap: 6px;
-    font-size: 14px;
+    gap: $gap-xs;
+    @include typo-title-6;
     color: $Brown-600;
   }
 
   &__stars {
-    color: #c7a465;
-    font-size: 12px;
+    color: $Star-color;
+    @include typo-body-4;
     display: flex;
     gap: 2px;
   }
@@ -125,7 +124,7 @@
   }
 
   &__rating-text {
-    font-size: 13px;
+    @include typo-body-4;
     color: $Brown-600;
   }
 }
@@ -145,7 +144,7 @@
   &__link {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: $padding-2;
     text-decoration: none;
     color: inherit;
   }
@@ -154,9 +153,9 @@
     width: 100%;
     max-width: 240px;
     aspect-ratio: 3 / 4;
-    border-radius: 8px;
+    border-radius: $padding-2;
     overflow: hidden;
-    background: #f4efea;
+    background: $Brown-100;
 
     @include mobile {
       max-width: none;
@@ -176,8 +175,8 @@
 
   &__name {
     margin: 0;
-    font-size: 15px;
-    font-weight: 500;
+    @include typo-body-2;
+    font-weight: get-weight('Medium');
     color: $Text-Primary-text-color;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -185,7 +184,7 @@
     overflow: hidden;
 
     @include mobile {
-      font-size: 14px;
+      @include typo-title-6;
     }
   }
 
@@ -196,13 +195,13 @@
   }
 
   &__price {
-    font-size: 15px;
-    font-weight: 600;
+    @include typo-body-2;
+    font-weight: get-weight('SemiBold');
     color: $Brown-800;
   }
 
   &__original-price {
-    font-size: 13px;
+    @include typo-body-4;
     color: $Brown-400;
     text-decoration: line-through;
   }

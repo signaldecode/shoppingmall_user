@@ -154,10 +154,10 @@ const handleDownloadAll = async () => {
   downloading.value = false
 
   if (results.success > 0) {
-    success(`${results.success}개의 쿠폰이 다운로드되었습니다.`)
+    success(`${results.success}${couponData.messages.downloadAllSuccess}`)
   }
   if (results.failed > 0) {
-    warning(`${results.failed}개의 쿠폰 다운로드에 실패했습니다.`)
+    warning(`${results.failed}${couponData.messages.downloadAllFailed}`)
   }
 }
 </script>

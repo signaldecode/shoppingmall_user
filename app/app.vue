@@ -92,10 +92,8 @@ useSeoMeta({
   ogImage: () => seoInfo.value?.ogImage || ''
 })
 
-// 메인 페이지는 투명 헤더, 나머지는 dark 헤더
-const headerVariant = computed(() => {
-  return route.path === '/' ? undefined : 'dark'
-})
+// portfolio 스타일: 항상 glassmorphism, variant 없음 (스크롤 시에만 scrolled 적용)
+const headerVariant = computed(() => undefined)
 
 </script>
 

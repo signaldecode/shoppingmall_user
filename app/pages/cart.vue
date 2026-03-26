@@ -90,7 +90,7 @@ const handleQuantityChange = async (id, quantity) => {
   try {
     await cart.updateQuantity(id, quantity)
   } catch (e) {
-    const message = e?.data?.error?.message || e?.data?.message || e?.message || '수량 변경에 실패했습니다.'
+    const message = e?.data?.error?.message || e?.data?.message || e?.message || cartData.messages.quantityError
     warning(message)
   }
 }
@@ -103,7 +103,7 @@ const handleDelete = async (id) => {
     selectedIds.value = new Set(selectedIds.value)
     success(cartData.messages.deleteSuccess)
   } catch (e) {
-    const message = e?.data?.error?.message || e?.data?.message || e?.message || '삭제에 실패했습니다.'
+    const message = e?.data?.error?.message || e?.data?.message || e?.message || cartData.messages.deleteError
     warning(message)
   }
 }
@@ -118,7 +118,7 @@ const handleDeleteSelected = async () => {
     selectedIds.value = new Set(selectedIds.value)
     success(cartData.messages.deleteSuccess)
   } catch (e) {
-    const message = e?.data?.error?.message || e?.data?.message || e?.message || '삭제에 실패했습니다.'
+    const message = e?.data?.error?.message || e?.data?.message || e?.message || cartData.messages.deleteError
     warning(message)
   }
 }
@@ -132,7 +132,7 @@ const handleDeleteAll = async () => {
     selectedIds.value = new Set(selectedIds.value)
     success(cartData.messages.deleteSuccess)
   } catch (e) {
-    const message = e?.data?.error?.message || e?.data?.message || e?.message || '장바구니 비우기에 실패했습니다.'
+    const message = e?.data?.error?.message || e?.data?.message || e?.message || cartData.messages.clearError
     warning(message)
   }
 }

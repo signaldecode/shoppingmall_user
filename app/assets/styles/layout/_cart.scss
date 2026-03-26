@@ -9,19 +9,22 @@
 @use '../tokens/layout' as *;
 
 .cart-page {
-  @include container;
-  padding-top: calc(80px + #{$padding-11}); // header + spacing (order page와 동일)
-  padding-bottom: $padding-12;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: $page-padding-top 8vw;
+
+  @include tablet {
+    padding: $page-padding-top-tablet 6vw;
+  }
 
   @include mobile {
-    padding-top: calc(60px + #{$padding-8});
-    padding-bottom: $padding-10;
+    padding: $page-padding-top-mobile 5vw $padding-section;
   }
 
   &__content {
     display: grid;
-    grid-template-columns: 1fr 480px;
-    gap: $padding-12; // 100
+    grid-template-columns: minmax(0, 1fr) minmax(240px, 320px);
+    gap: $padding-10 + $padding-2; // 48px
     align-items: start;
 
     @include tablet {
@@ -50,14 +53,13 @@
   }
 
   &__title {
-    font-family: 'Playfair Display', 'Pretendard Variable', Pretendard, sans-serif;
-    font-size: 48px;
-    font-weight: 700;
+    @include typo-display-2;
+    font-size: $Display-display-2-Font-size - 4px;
     margin: 0;
     color: $Text-Primary-text-color;
 
     @include mobile {
-      font-size: 32px;
+      @include typo-headline-2;
     }
   }
 }

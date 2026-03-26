@@ -15,10 +15,10 @@
 
   &__main {
     flex: 1;
-    padding-top: 80px;
+    padding-top: $size-header-desktop;
 
     @include mobile {
-      padding-top: 60px;
+      padding-top: $size-header-mobile;
     }
   }
 

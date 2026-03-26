@@ -27,9 +27,9 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: $padding-9; // 36
+    padding: $padding-6 $padding-7;
     border: 1px solid $Border-Border-line-100;
-    border-radius: 16px;
+    border-radius: $padding-4 + 2px; // 18px
     background: $Primary-white-color;
 
     @include mobile {
@@ -56,15 +56,15 @@
   }
 
   &__avatar {
-    width: 88px;
-    height: 88px;
+    width: $padding-section; // 80px
+    height: $padding-section;
     border-radius: 50%;
-    background: $Black-Primary-black-50;
+    background: $Brown-100;
     display: flex;
     align-items: center;
     justify-content: center;
     color: $Text-Thirty-text-color;
-    flex: 0 0 88px;
+    flex: 0 0 $padding-section;
 
     @include mobile-xs {
       width: 56px;

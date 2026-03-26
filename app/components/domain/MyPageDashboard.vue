@@ -106,8 +106,8 @@ const handleSelectOrder = (order) => {
 
     <section class="mypage-dashboard__section">
       <h3 class="mypage-dashboard__section-title">
-        <span class="mypage-dashboard__section-title-main">나의 주문처리 현황</span>
-        <span class="mypage-dashboard__section-title-sub">(최근 1개월)</span>
+        <span class="mypage-dashboard__section-title-main">{{ dashboardData.orderStatus.title }}</span>
+        <span class="mypage-dashboard__section-title-sub">{{ dashboardData.orderStatus.subtitle }}</span>
       </h3>
 
       <div class="mypage-dashboard__order-status">
@@ -124,7 +124,7 @@ const handleSelectOrder = (order) => {
           </div>
         </div>
 
-        <aside class="mypage-dashboard__status-side" aria-label="취소/교환/환불">
+        <aside class="mypage-dashboard__status-side" :aria-label="dashboardData.orderStatus.sideAriaLabel">
           <div
             v-for="s in orderSide"
             :key="s.id"
@@ -140,15 +140,15 @@ const handleSelectOrder = (order) => {
     <section class="mypage-dashboard__section">
       <div style="display:flex; align-items:flex-end; justify-content:space-between; width:100%;">
         <h3 class="mypage-dashboard__section-title" style="margin:0;">
-          <span class="mypage-dashboard__section-title-main">최근 나의 주문내역</span>
-          <span class="mypage-dashboard__section-title-sub">(최근 1개월)</span>
+          <span class="mypage-dashboard__section-title-main">{{ dashboardData.recentOrders.title }}</span>
+          <span class="mypage-dashboard__section-title-sub">{{ dashboardData.recentOrders.subtitle }}</span>
         </h3>
         <button
           type="button"
           class="mypage-dashboard__view-all"
           @click="emit('go-orders')"
         >
-          전체보기
+          {{ dashboardData.recentOrders.viewAllButton }}
         </button>
       </div>
 

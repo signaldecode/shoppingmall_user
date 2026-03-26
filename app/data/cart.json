@@ -14,7 +14,10 @@
   },
   "messages": {
     "deleteSuccess": "삭제되었습니다.",
-    "soldOutAlert": "품절 상품이 있습니다."
+    "soldOutAlert": "품절 상품이 있습니다.",
+    "quantityError": "수량 변경에 실패했습니다.",
+    "deleteError": "삭제에 실패했습니다.",
+    "clearError": "장바구니 비우기에 실패했습니다."
   },
   "product": {
     "currency": "원"

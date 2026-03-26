@@ -2,25 +2,27 @@
 // Event Banner (portfolio 디자인)
 // ============================================
 
+@use '../tokens/colors' as *;
+@use '../tokens/spacing' as *;
 @use '../tokens/breakpoints' as *;
 
 .event-banner {
-  padding: 50px 8vw 80px;
+  padding: $padding-11 8vw $padding-section;
 
   @include tablet {
-    padding: 40px 6vw 60px;
+    padding: $padding-10 6vw $padding-11;
   }
 
   @include mobile {
-    padding: 30px 4vw 50px;
+    padding: $padding-7 4vw $padding-10;
   }
 
   &__frame {
     display: block;
     width: 100%;
     min-height: 320px;
-    border-radius: 4px;
-    background: #f2ede6;
+    border-radius: $padding-1;
+    background: $Brown-200;
     overflow: hidden;
     text-decoration: none;
 

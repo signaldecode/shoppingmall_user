@@ -2,6 +2,7 @@
 // Reset & Base Styles
 // ============================================
 
+@use '../tokens/colors' as *;
 @use '../tokens/breakpoints' as *;
 
 *,
@@ -25,7 +26,7 @@ html {
 body {
   font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   line-height: 1.5;
-  color: #3f3a35;
+  color: $Text-Primary-text-color;
   min-width: 320px;
   overflow-x: hidden;
 }

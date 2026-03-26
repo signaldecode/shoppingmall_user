@@ -15,6 +15,7 @@
   position: relative;
   height: 92vh;
   min-height: 640px;
+  margin-top: $size-header-desktop;
   overflow: hidden;
   background-color: $Border-Border-line-100;
 
@@ -26,6 +27,7 @@
   @include mobile {
     height: 65vh;
     min-height: 400px;
+    margin-top: $size-header-mobile;
   }
 
   &__slider {
@@ -61,7 +63,7 @@
     flex-direction: column;
     justify-content: center;
     padding: 0 12%;
-    color: #fdfaf6;
+    color: $Brown-50;
     background: linear-gradient(90deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0) 60%);
     z-index: 10;
 
@@ -71,21 +73,21 @@
   }
 
   &__subtitle {
-    font-size: 13px;
+    @include typo-body-4;
     letter-spacing: 0.3em;
     margin: 0 0 $padding-3;
     opacity: 0.9;
 
     @include mobile {
-      font-size: 11px;
+      @include typo-body-5;
     }
   }
 
   &__title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(38px, 5vw, 64px);
+    @include typo-display-1; // Playfair Display
+    font-size: clamp(38px, 5vw, $Display-display-1-Font-size);
     margin: 0 0 $padding-5;
-    color: #e6e6e6;
+    color: $Gray-300;
     line-height: 1.1;
   }
 
@@ -110,7 +112,7 @@
     color: inherit;
     text-transform: uppercase;
     letter-spacing: 0.2em;
-    font-size: 12px;
+    @include typo-body-4;
     text-decoration: none;
     transition: background 0.3s ease;
 
@@ -173,7 +175,7 @@
   // Portfolio 스타일: 도트 인디케이터
   &__dots {
     position: absolute;
-    bottom: 32px;
+    bottom: $padding-8;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -181,24 +183,24 @@
     z-index: 10;
 
     @include mobile {
-      bottom: 20px;
+      bottom: $padding-5;
       gap: $padding-2;
     }
   }
 
   &__dot {
-    width: 28px;
+    width: $padding-7;
     height: 2px;
     background: rgba(255, 255, 255, 0.4);
     cursor: pointer;
     transition: background 0.3s ease;
 
     &--active {
-      background: #fff;
+      background: $Primary-white-color;
     }
 
     @include mobile {
-      width: 20px;
+      width: $padding-5;
     }
   }
 }
@@ -318,14 +320,13 @@
   }
 
   &__title {
-    font-family: 'Playfair Display', 'Pretendard Variable', Pretendard, sans-serif;
-    font-size: 48px;
-    font-weight: 700;
+    @include typo-display-2; // Playfair Display
+    font-size: $Display-display-2-Font-size - 4px;
     color: $Primary-color;
     margin: 0;
 
     @include mobile {
-      font-size: 28px;
+      @include typo-headline-3;
     }
   }
 

@@ -14,19 +14,22 @@
 $header-height: 80px;
 
 .order-page {
-  @include container;
-  padding-top: calc(#{$header-height} + #{$padding-11});
-  padding-bottom: $padding-12;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: $page-padding-top 16vw;
+
+  @include tablet {
+    padding: $page-padding-top-tablet 6vw;
+  }
 
   @include mobile {
-    padding-top: calc(60px + #{$padding-8});
-    padding-bottom: $padding-10;
+    padding: $page-padding-top-mobile 5vw $padding-section;
   }
 
   &__content {
     display: grid;
-    grid-template-columns: 1fr 408px;
-    gap: $padding-12;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.6fr);
+    gap: $padding-10 + $padding-2;
     align-items: start;
 
     @include tablet {
@@ -283,10 +286,11 @@ $header-height: 80px;
 .order-summary-aside {
   position: sticky;
   top: calc(#{$header-height} + #{$padding-6});
-  width: 408px;
-  padding: $padding-9;
+  width: 100%;
+  padding: $padding-5;
   background: $Bg-Primary-bg-color;
-  border-radius: 8px;
+  border: 1px solid $Brown-200;
+  border-radius: $padding-4;
 
   @include tablet {
     position: static;

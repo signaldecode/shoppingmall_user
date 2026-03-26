@@ -68,7 +68,3 @@ pnpm preview
   - 텍스트: app/data/*.json 수정
   - 색상/폰트: assets/styles/tokens/ 수정
   - 컴포넌트: components/ 확장
-
-  ## 컨벤션
-
-  https://www.notion.so/2d315a9ef95380d5933cfc64308cb1bd?source=copy_link

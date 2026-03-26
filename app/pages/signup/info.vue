@@ -159,35 +159,35 @@ const validateForm = () => {
   //   return false;
   // }
   if (!validateRequired(form.password)) {
-    alert("비밀번호를 입력해주세요.");
+    alert(signupData.info.messages.passwordRequired);
     return false;
   }
   if (!validate("password", form.password)) {
-    alert("비밀번호는 8자 이상, 영문과 숫자를 포함해야 합니다.");
+    alert(signupData.info.messages.passwordInvalid);
     return false;
   }
   if (!validatePasswordConfirm(form.password, form.passwordConfirm)) {
-    alert("비밀번호가 일치하지 않습니다.");
+    alert(signupData.info.messages.passwordMismatch);
     return false;
   }
   if (!validateRequired(form.name)) {
-    alert("이름을 입력해주세요.");
+    alert(signupData.info.messages.nameRequired);
     return false;
   }
   if (!validate("name", form.name)) {
-    alert("이름은 2~20자의 한글 또는 영문이어야 합니다.");
+    alert(signupData.info.messages.nameInvalid);
     return false;
   }
   if (!validateRequired(form.mobile1) || !validateRequired(form.mobile2)) {
-    alert("휴대폰 번호를 입력해주세요.");
+    alert(signupData.info.messages.phoneRequired);
     return false;
   }
   if (!validate("phoneMid", form.mobile1)) {
-    alert("중간번호는 3~4자리 숫자여야 합니다.");
+    alert(signupData.info.messages.phoneMidInvalid);
     return false;
   }
   if (!validate("phoneLast", form.mobile2)) {
-    alert("끝번호는 4자리 숫자여야 합니다.");
+    alert(signupData.info.messages.phoneLastInvalid);
     return false;
   }
   return true;
@@ -217,7 +217,7 @@ const handleComplete = async () => {
       router.push("/signup/done");
     }
   } catch (error) {
-    alert(error.data?.message || "회원가입에 실패했습니다.");
+    alert(error.data?.message || signupData.info.messages.signupFailed);
   }
 };
 </script>
@@ -518,8 +518,7 @@ const handleComplete = async () => {
                   <BaseRadioGroup
                     v-model="form.gender"
                     :options="[
-                      { label: '남성', value: 'MALE' },
-                      { label: '여성', value: 'FEMALE' },
+                      ...signupData.info.fields.gender.options,
                     ]"
                     name="gender"
                     variant="default"

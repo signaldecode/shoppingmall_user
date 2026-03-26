@@ -9,24 +9,24 @@
 
 .page-products {
   min-height: 100vh;
-  padding-top: 80px;
+  padding-top: $size-header-desktop;
 
   @include mobile {
-    padding-top: 60px;
+    padding-top: $size-header-mobile;
   }
 }
 
 .products-page {
   max-width: 1440px;
   margin: 0 auto;
-  padding: 80px 8vw 120px;
+  padding: $padding-section 8vw $page-padding-top-tablet;
 
   @include tablet {
-    padding: 60px 6vw 100px;
+    padding: $padding-11 6vw $page-padding-top-mobile;
   }
 
   @include mobile {
-    padding: 40px 4vw 80px;
+    padding: $padding-10 4vw $padding-section;
   }
 
   &__header {
@@ -39,14 +39,13 @@
   }
 
   &__title {
-    font-family: 'Playfair Display', 'Pretendard Variable', Pretendard, sans-serif;
-    font-size: 48px;
-    font-weight: 700;
+    @include typo-display-2;
+    font-size: $Display-display-2-Font-size - 4px;
     color: $Text-Primary-text-color;
     margin-bottom: $padding-3;
 
     @include mobile {
-      font-size: 32px;
+      @include typo-headline-2;
     }
   }
 
