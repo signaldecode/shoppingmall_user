@@ -110,7 +110,6 @@ export default defineNuxtConfig({
   },
 
   nitro: {
-    preset: 'aws-amplify',
     compressPublicAssets: true,
     minify: true,
     routeRules: {
