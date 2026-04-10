@@ -35,7 +35,7 @@ const cartProducts = computed(() => {
       variantId: it.variantId,
       name: it.name ?? it.productName ?? '-',
       variantName: it.variantName ?? it.optionName ?? it.option ?? '',
-      image: it.image ?? it.imageUrl ?? '/images/products/product-1.png',
+      image: it.image ?? it.imageUrl ?? '/images/빈이미지.png',
       imageAlt: it.imageAlt ?? it.name ?? '상품 이미지',
       quantity,
       price,

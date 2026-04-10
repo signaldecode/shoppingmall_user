@@ -69,20 +69,38 @@ onUnmounted(() => {
     </div>
 
     <main>
-      <!-- 추천 상품 섹션 -->
+      <!-- 1섹션 -->
       <SectionBestItems
         v-if="recommendProducts.length > 0"
         class="reveal"
-        :data="mainData.newArrival"
+        :data="mainData.section1"
         :products="recommendProducts"
         :loading="pending"
       />
 
-      <!-- 베스트 상품 섹션 -->
+      <!-- 2섹션 -->
       <SectionBestItems
         v-if="bestProducts.length > 0"
         class="reveal"
-        :data="mainData.bestItems"
+        :data="mainData.section2"
+        :products="bestProducts"
+        :loading="pending"
+      />
+
+      <!-- 3섹션 -->
+      <SectionBestItems
+        v-if="recommendProducts.length > 0"
+        class="reveal"
+        :data="mainData.section3"
+        :products="recommendProducts"
+        :loading="pending"
+      />
+
+      <!-- 4섹션 -->
+      <SectionBestItems
+        v-if="bestProducts.length > 0"
+        class="reveal"
+        :data="mainData.section4"
         :products="bestProducts"
         :loading="pending"
       />

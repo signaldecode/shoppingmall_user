@@ -95,6 +95,11 @@ export default defineNuxtConfig({
           api: 'modern-compiler'
         }
       }
+    },
+    server: {
+      hmr: {
+        port: 24679
+      }
     }
   },
 

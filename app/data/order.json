@@ -178,7 +178,7 @@
         "option": "시그니처 글로우 세럼 30ml",
         "price": 45000,
         "quantity": 1,
-        "image": "/images/products/product-1.png",
+        "image": "/images/빈이미지.png",
         "imageAlt": "시그니처 글로우 세럼 상품 이미지"
       },
       {
@@ -187,7 +187,7 @@
         "option": "하이드라 부스트 크림 50ml",
         "price": 38000,
         "quantity": 1,
-        "image": "/images/products/product-1.png",
+        "image": "/images/빈이미지.png",
         "imageAlt": "하이드라 부스트 크림 상품 이미지"
       }
     ],

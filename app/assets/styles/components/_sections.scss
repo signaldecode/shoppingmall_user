@@ -55,20 +55,20 @@
     filter: brightness(0.82);
   }
 
-  // Portfolio 스타일: 왼쪽 그라디언트 오버레이
+  // Portfolio 스타일: 좌측 하단 그라디언트 오버레이
   &__overlay {
     position: absolute;
     inset: 0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    padding: 0 12%;
+    justify-content: flex-end;
+    padding: 0 12% $padding-12;
     color: $Brown-50;
-    background: linear-gradient(90deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0) 60%);
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 50%);
     z-index: 10;
 
     @include mobile {
-      padding: 0 8%;
+      padding: 0 8% $padding-8;
     }
   }
 

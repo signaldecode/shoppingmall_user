@@ -50,12 +50,12 @@
         "username": "GlowMina",
         "date": "2025.05.22",
         "isBest": true,
-        "images": ["/images/instagram/1.png"],
-        "otherImages": ["/images/instagram/1.png", "/images/instagram/2.png", "/images/instagram/3.png", "/images/instagram/4.png", "/images/products/product-1.png"],
+        "images": ["/images/빈이미지.png"],
+        "otherImages": ["/images/빈이미지.png", "/images/빈이미지.png", "/images/빈이미지.png", "/images/빈이미지.png", "/images/빈이미지.png"],
         "product": {
           "id": "p1",
           "name": "일루미엘 AC 폼클렌저 12ml",
-          "thumb": "/images/products/product-1.png",
+          "thumb": "/images/빈이미지.png",
           "rating": 4.9,
           "reviewCountText": "20건"
         }
@@ -68,11 +68,11 @@
         "username": "PureJ",
         "date": "2025.05.22",
         "isBest": false,
-        "images": ["/images/instagram/1.png"],
+        "images": ["/images/빈이미지.png"],
         "product": {
           "id": "p1",
           "name": "일루미엘 AC 폼클렌저 12ml",
-          "thumb": "/images/products/product-1.png",
+          "thumb": "/images/빈이미지.png",
           "rating": 4.9,
           "reviewCountText": "20건"
         }
@@ -85,11 +85,11 @@
         "username": "Sokha",
         "date": "2025.05.22",
         "isBest": false,
-        "images": ["/images/instagram/2.png"],
+        "images": ["/images/빈이미지.png"],
         "product": {
           "id": "p1",
           "name": "일루미엘 AC 폼클렌저 12ml",
-          "thumb": "/images/products/product-1.png",
+          "thumb": "/images/빈이미지.png",
           "rating": 4.9,
           "reviewCountText": "20건"
         }
@@ -106,7 +106,7 @@
         "product": {
           "id": "p2",
           "name": "시그니처 글로우 세럼",
-          "thumb": "/images/products/product-1.png",
+          "thumb": "/images/빈이미지.png",
           "rating": 4.9,
           "reviewCountText": "20건"
         }
@@ -119,11 +119,11 @@
         "username": "SoftAura",
         "date": "2025.05.22",
         "isBest": false,
-        "images": ["/images/instagram/3.png"],
+        "images": ["/images/빈이미지.png"],
         "product": {
           "id": "p2",
           "name": "시그니처 글로우 세럼",
-          "thumb": "/images/products/product-1.png",
+          "thumb": "/images/빈이미지.png",
           "rating": 4.9,
           "reviewCountText": "20건"
         }
@@ -136,11 +136,11 @@
         "username": "DewW",
         "date": "2025.05.22",
         "isBest": false,
-        "images": ["/images/instagram/4.png"],
+        "images": ["/images/빈이미지.png"],
         "product": {
           "id": "p1",
           "name": "일루미엘 AC 폼클렌저 12ml",
-          "thumb": "/images/products/product-1.png",
+          "thumb": "/images/빈이미지.png",
           "rating": 4.9,
           "reviewCountText": "20건"
         }

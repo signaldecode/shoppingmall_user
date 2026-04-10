@@ -7,7 +7,7 @@
   "header": {
     "logo": {
       "alt": "브랜드 로고",
-      "src": "/images/hero/logo.svg",
+      "src": "/images/빈이미지.png",
       "menuLabel": "메뉴 열기",
       "searchLabel": "검색",
       "searchPlaceholder": "검색어를 입력하세요",
@@ -22,14 +22,14 @@
     },
     "navAriaLabel": "메인 네비게이션",
     "nav": [
-      { "label": "베스트", "href": "/best" },
-      { "label": "카테고리", "href": "/category" },
-      { "label": "쿠폰", "href": "/coupons" },
-      { "label": "공지사항", "href": "/notice" },
-      { "label": "리뷰", "href": "/review" },
-      { "label": "Q&A", "href": "/qna" },
-      { "label": "FAQ", "href": "/faq" },
-      { "label": "고객센터", "href": "/support" }
+      { "label": "메뉴1", "href": "/best" },
+      { "label": "메뉴2", "href": "/category" },
+      { "label": "메뉴3", "href": "/coupons" },
+      { "label": "메뉴4", "href": "/notice" },
+      { "label": "메뉴5", "href": "/review" },
+      { "label": "메뉴6", "href": "/qna" },
+      { "label": "메뉴7", "href": "/faq" },
+      { "label": "메뉴8", "href": "/support" }
     ]
   },
   "hero": {
@@ -42,35 +42,35 @@
         "title": "POWER OF RADIANCE",
         "subtitle": "Signal Decode",
         "description": "피부 속에서부터 채워지는 깊은 광채를 느껴보세요.",
-        "image": "/images/hero/main-hero.png",
+        "image": "/images/빈이미지.png",
         "imageAlt": "메인 히어로 이미지 1"
       },
       {
         "title": "NATURAL GLOW",
         "subtitle": "Skin Care",
         "description": "피부 속에서부터 채워지는 깊은 광채를 느껴보세요.",
-        "image": "/images/hero/main-hero.png",
+        "image": "/images/빈이미지.png",
         "imageAlt": "메인 히어로 이미지 2"
       },
       {
         "title": "PURE BEAUTY",
         "subtitle": "Make Up",
         "description": "피부 속에서부터 채워지는 깊은 광채를 느껴보세요.",
-        "image": "/images/hero/main-hero.png",
+        "image": "/images/빈이미지.png",
         "imageAlt": "메인 히어로 이미지 3"
       },
       {
         "title": "HYDRATION BOOST",
         "subtitle": "Moisture Care",
         "description": "피부 속에서부터 채워지는 깊은 광채를 느껴보세요.",
-        "image": "/images/hero/main-hero.png",
+        "image": "/images/빈이미지.png",
         "imageAlt": "메인 히어로 이미지 4"
       },
       {
         "title": "ANTI-AGING",
         "subtitle": "Time Reverse",
         "description": "피부 속에서부터 채워지는 깊은 광채를 느껴보세요.",
-        "image": "/images/hero/main-hero.png",
+        "image": "/images/빈이미지.png",
         "imageAlt": "메인 히어로 이미지 5"
       }
     ]
@@ -85,9 +85,9 @@
       { "label": "클렌징", "href": "/category?tab=cleansing", "image": "/images/categories/category-3.png", "imageAlt": "클렌징 카테고리" }
     ]
   },
-  "newArrival": {
-    "title": "New Arrival",
-    "subtitle": "새 시즌 신상품을 먼저 만나보세요.",
+  "section1": {
+    "title": "1섹션",
+    "subtitle": "1섹션 서브타이틀",
     "viewAllLabel": "전체보기",
     "viewAllHref": "/products",
     "arrowLabels": {
@@ -95,9 +95,9 @@
       "next": "다음 상품"
     }
   },
-  "bestItems": {
-    "title": "Best Item",
-    "subtitle": "가장 많은 사랑을 받은 베스트 아이템이에요.",
+  "section2": {
+    "title": "2섹션",
+    "subtitle": "2섹션 서브타이틀",
     "viewAllLabel": "전체보기",
     "viewAllHref": "/best",
     "arrowLabels": {
@@ -105,9 +105,19 @@
       "next": "다음 상품"
     }
   },
-  "specialOffer": {
-    "title": "Special Offer",
-    "subtitle": "지금 바로 할인 중인 인기 상품을 담았어요.",
+  "section3": {
+    "title": "3섹션",
+    "subtitle": "3섹션 서브타이틀",
+    "viewAllLabel": "전체보기",
+    "viewAllHref": "/products",
+    "arrowLabels": {
+      "prev": "이전 상품",
+      "next": "다음 상품"
+    }
+  },
+  "section4": {
+    "title": "4섹션",
+    "subtitle": "4섹션 서브타이틀",
     "viewAllLabel": "전체보기",
     "viewAllHref": "/products",
     "arrowLabels": {
@@ -123,24 +133,24 @@
     "full": {
       "title": "새로운이벤트 애플워치를 드립니다",
       "subtitle": "10% 추가 할인 혜택 온라인 단독 신상 할인 20%",
-      "image": "/images/banner-full.jpg",
+      "image": "/images/빈이미지.png",
       "imageAlt": "전체 배너 이미지",
       "href": "/event/apple-watch"
     },
     "mdPickBanner": {
       "title": "",
       "subtitle": "",
-      "image": "/images/banners/half-banner-1.png",
+      "image": "/images/빈이미지.png",
       "imageAlt": "MD Pick 프로모션 배너"
     },
     "slide": [
-      { "image": "/images/banners/banner_slide.png", "imageAlt": "슬라이드 배너 1", "href": "/event" },
-      { "image": "/images/slide-2.jpg", "imageAlt": "슬라이드 배너 2", "href": "/event" },
-      { "image": "/images/slide-3.jpg", "imageAlt": "슬라이드 배너 3", "href": "/event" }
+      { "image": "/images/빈이미지.png", "imageAlt": "슬라이드 배너 1", "href": "/event" },
+      { "image": "/images/빈이미지.png", "imageAlt": "슬라이드 배너 2", "href": "/event" },
+      { "image": "/images/빈이미지.png", "imageAlt": "슬라이드 배너 3", "href": "/event" }
     ],
     "half": [
-      { "title": "SPRING SALE", "subtitle": "최대 50% 할인", "image": "/images/banners/half-banner-1.png", "imageAlt": "하프 배너 1", "href": "/event", "buttonLabel": "더 알아보기" },
-      { "title": "NEW ARRIVAL", "subtitle": "신상품 입고", "image": "/images/banners/half-banner-2.png", "imageAlt": "하프 배너 2", "href": "/products", "buttonLabel": "더 알아보기" }
+      { "title": "SPRING SALE", "subtitle": "최대 50% 할인", "image": "/images/빈이미지.png", "imageAlt": "하프 배너 1", "href": "/event", "buttonLabel": "더 알아보기" },
+      { "title": "NEW ARRIVAL", "subtitle": "신상품 입고", "image": "/images/빈이미지.png", "imageAlt": "하프 배너 2", "href": "/products", "buttonLabel": "더 알아보기" }
     ],
     "halfLabels": {
       "buttonLabel": "더 알아보기"
@@ -163,16 +173,16 @@
   },
   "footer": {
     "logo": {
-      "src": "/images/hero/logo.svg",
+      "src": "/images/빈이미지.png",
       "alt": "logo",
       "text": "logo"
     },
     "nav": [
-      { "label": "베스트", "href": "/best" },
-      { "label": "카테고리", "href": "/products" },
-      { "label": "공지사항", "href": "/notice" },
-      { "label": "리뷰", "href": "/review" },
-      { "label": "고객센터", "href": "/support" }
+      { "label": "메뉴1", "href": "/best" },
+      { "label": "메뉴2", "href": "/products" },
+      { "label": "메뉴3", "href": "/notice" },
+      { "label": "메뉴4", "href": "/review" },
+      { "label": "메뉴5", "href": "/support" }
     ],
     "companyInfo": {
       "name": "상호명",

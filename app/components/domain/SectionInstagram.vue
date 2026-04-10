@@ -1,10 +1,6 @@
 <script setup>
-import insta1 from '~/assets/images/instagram1.jpg'
-import insta2 from '~/assets/images/instagram2.jpg'
-import insta3 from '~/assets/images/instagram3.jpg'
-import insta4 from '~/assets/images/instagram4.jpg'
-
-const instaImages = [insta1, insta2, insta3, insta4]
+const FALLBACK = '/images/빈이미지.png'
+const instaImages = [FALLBACK, FALLBACK, FALLBACK, FALLBACK]
 
 const props = defineProps({
   data: {
