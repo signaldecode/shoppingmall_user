@@ -131,8 +131,10 @@
 
 .page-main {
   min-height: 100vh;
+  min-width: 320px;
   display: flex;
   flex-direction: column;
+  overflow: clip;
 
   &__hero-wrap {
     position: relative;

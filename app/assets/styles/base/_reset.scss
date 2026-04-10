@@ -58,12 +58,4 @@ button {
   border: 0;
 }
 
-// Page Layout
-.page-main {
-  min-width: 320px;
-  overflow-x: hidden;
-
-  &__hero-wrap {
-    position: relative;
-  }
-}
+// Page Layout → _layout.scss로 통합됨

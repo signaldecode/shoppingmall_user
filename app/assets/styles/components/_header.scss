@@ -14,11 +14,8 @@
   right: 0;
   z-index: 100;
   height: $size-header-desktop;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-  transition: background 0.3s ease, border-color 0.3s ease;
+  background: $Primary-white-color;
+  border-bottom: 1px solid $Border-Border-line-100;
 
   // portfolio 스타일: 기본 상태에서도 dark text
   .header__menu-btn,
@@ -36,10 +33,7 @@
     height: $size-header-mobile;
   }
 
-  // Scrolled state: 배경만 조금 더 불투명하게
   &--scrolled {
-    background: rgba(255, 255, 255, 0.92);
-
     .header__action-btn:focus-visible {
       outline-color: $Primary-color;
     }
